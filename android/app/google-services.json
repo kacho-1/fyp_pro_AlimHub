@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "756928835588",
+    "project_id": "alimhub-6c7f4",
+    "storage_bucket": "alimhub-6c7f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756928835588:android:fd2ec0e883b0b7fcf4c551",
+        "android_client_info": {
+          "package_name": "com.example.fyp_pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1Dbg8J2sdVpoRN-aKYG0fC1SV_R6DMUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
