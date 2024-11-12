@@ -1,13 +1,11 @@
 import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fyp_pro/publicdashboard/Profile/Controller/Profilecontroller.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:image_picker/image_picker.dart';
-import '../UserModel/UserModel.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/Authentication/SignIn.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:csc_picker/csc_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -23,6 +21,7 @@ class Signup extends StatefulWidget {
 
 
 class _SignupState extends State<Signup> {
+  final profilecontroller = ProfileController();
   XFile? image;
   UploadTask? uploadtask;
   final _formKey = GlobalKey<FormState>();
@@ -38,8 +37,6 @@ class _SignupState extends State<Signup> {
   final TextEditingController _dob = TextEditingController();
   final TextEditingController _gender = TextEditingController();
   final TextEditingController _username =TextEditingController();
-  String? _imageFilePath;
-  String? _documentFilePath;
   String?  selectedcountry;
   String?  selectedstate;
   String? selectedcity;
@@ -47,10 +44,10 @@ class _SignupState extends State<Signup> {
   bool _isLoading = false;
   var isLoading = false.obs;
 
-  var isImgAvailable = false.obs;
+  //var isImgAvailable = false.obs;
   final _picker = ImagePicker();
-  var selectedImagePath = ''.obs;
-  var selectedImageSize = ''.obs;
+  //var selectedImagePath = ''.obs;
+  //var selectedImageSize = ''.obs;
 
 
 
@@ -86,7 +83,7 @@ class _SignupState extends State<Signup> {
 
         );
         String uid = userCredential.user!.uid;
-        String? imageUrl = await uploadFile();
+        String? imageUrl = await profilecontroller.uploadFile();
 
         if (_isAlim) {
           // Store data in 'Alim' collection
@@ -155,66 +152,15 @@ class _SignupState extends State<Signup> {
     }
   }
 
-  Future<String?> uploadFile() async {
-    // Ensure that the selectedImagePath is not null and valid
-    if (selectedImagePath.value == null || selectedImagePath.value.isEmpty) {
-      print('No image selected.');
-      return null; // Return null if there's no image
-    }
 
-    File file = File(selectedImagePath.value);
-    FirebaseStorage storage = FirebaseStorage.instance;
-
-    // Generate a random string for the file name to avoid conflicts
-    const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    Random rnd = Random();
-    String randomStr = String.fromCharCodes(Iterable.generate(
-        8, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
-
-    // Upload the image to Firebase Storage
-    try {
-      // Use the random string as part of the file name
-      await storage.ref('uploads/pic/$randomStr').putFile(file);
-
-      // Get the download URL for the uploaded file
-      String downloadURL = await storage.ref('uploads/pic/$randomStr').getDownloadURL();
-
-      return downloadURL; // Return the download URL
-    } on FirebaseException catch (e) {
-      // Handle specific Firebase exceptions
-      print('Error during file upload: ${e.code}');
-      return null; // Return null if an error occurs
-    } catch (e) {
-      // Handle any other exceptions
-      print('An unexpected error occurred: $e');
-      return null; // Return null for any other errors
-    }
-  }
-
-  void getImage(ImageSource imageSource) async {
-    final pickedFile = await _picker.pickImage(source: imageSource);
-
-    if (pickedFile != null) {
-      selectedImagePath.value = pickedFile.path;
-
-      selectedImageSize.value = "${((File(selectedImagePath.value)).
-      lengthSync() / 1024 / 1024).toStringAsFixed(2)} Mb";
-
-      isImgAvailable.value = true;
-    } else {
-      isImgAvailable.value = false;
-    }
-  }
   Widget _buildPictureUploadButton() {
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // I have added this --> Profile picture
-          // rest of the code is same
           GestureDetector(
             onTap: () async {
-              getImage(ImageSource.gallery);
+              profilecontroller.getImage(ImageSource.gallery);
             },
             child: Center(
               child: Container(
@@ -224,7 +170,7 @@ class _SignupState extends State<Signup> {
                   shape: BoxShape.circle,
                 ),
                 child: Obx(
-                      () => selectedImagePath.value == ''
+                      () => profilecontroller.selectedImagePath.value == ''
                       ? const CircleAvatar(
                       child: Icon(
                         Icons.person,
@@ -233,7 +179,7 @@ class _SignupState extends State<Signup> {
                       : CircleAvatar(
                     radius: 80,
                     backgroundImage: Image.file(
-                      File(selectedImagePath.value),
+                      File(profilecontroller.selectedImagePath.value),
                       fit: BoxFit.fill,
                     ).image,
                   ),

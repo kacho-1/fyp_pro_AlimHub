@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Assalaam-Alaikum ',style: Theme.of(context).textTheme.labelMedium!.apply(color: Colors.white60,fontFamily: 'Poppins')),
-                            Text(controller.name.value,style: Theme.of(context).textTheme.headlineSmall!.apply(color: Colors.grey.shade300,fontFamily: 'Poppins-Medium',)),
+                            Obx(()=>Text(controller.name.value,style: Theme.of(context).textTheme.headlineSmall!.apply(color: Colors.grey.shade300,fontFamily: 'Poppins-Medium',))),
 
 
                           ],

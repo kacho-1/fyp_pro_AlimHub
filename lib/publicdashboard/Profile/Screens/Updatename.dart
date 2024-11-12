@@ -5,11 +5,13 @@ import 'package:iconsax/iconsax.dart';
 import '../Controller/Updatenamecontroller.dart';
 
 class ChangeName extends StatelessWidget {
-  const ChangeName({super.key});
+  final UpdateNameController controller = Get.put(UpdateNameController());
+
+   ChangeName({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(UpdateNameController());
+    controller.loadUserName();
     return Scaffold(
       // Appbar
       appBar: AppBar(
@@ -32,26 +34,31 @@ class ChangeName extends StatelessWidget {
               key: controller.updateUserNameFormKey,
               child: Column(
                 children: [
-                  TextFormField(
-                    controller: controller.firstName,
+                 Obx(()=> TextFormField(
+                    controller: controller.nameController.value,
                     style: const TextStyle(fontSize: 14),
                     expands: false,
                     decoration: const InputDecoration(labelText: 'Name', prefixIcon: Icon(Iconsax.user)),
                   ),
-                  SizedBox(height: 10,),
 
-                ],
-              ),
+                 )],
+                  ),
             ),
             SizedBox(height:10,),
 
             // Save Button
             SizedBox(width: double.infinity,
-              child: ElevatedButton(onPressed: () =>  controller.updateUserName(), child: const Text('Save')),
-            )
+              child: ElevatedButton(onPressed: () {
+                controller.updateUserName();
+
+              }, child: const Text('Save')),
+            ),
+
+
           ],
         ),
       ),
     );
   }
+
 }

@@ -6,13 +6,22 @@ import 'package:fyp_pro/publicdashboard/Customs/CustomProfile.dart';
 import 'package:fyp_pro/publicdashboard/Customs/customSettingsection.dart';
 import 'package:fyp_pro/publicdashboard/Profile/Controller/Profilecontroller.dart';
 import 'package:fyp_pro/publicdashboard/Profile/Screens/Updatename.dart';
+import 'package:fyp_pro/publicdashboard/Profile/Screens/updatedob.dart';
+import 'package:fyp_pro/publicdashboard/Profile/Screens/updategender.dart';
+import 'package:fyp_pro/publicdashboard/Profile/Screens/updatenumber.dart';
+import 'package:fyp_pro/publicdashboard/Profile/Screens/updateprofilepicture.dart';
+import 'package:fyp_pro/publicdashboard/Profile/Screens/updateusername.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
+import 'deleteaccount/deleteaccountPopup.dart';
+
+
 class ProfileScreen extends StatelessWidget {
    ProfileScreen({super.key});
-   final controller = Get.put(ProfileController());
+  final controller = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               SizedBox(
                 width: double.infinity,
-                child: Column(
+                child: Obx(()=>Column(
                   children: [
                   Center(
                     child: ClipOval(
@@ -45,10 +54,13 @@ class ProfileScreen extends StatelessWidget {
                     ),
 
                   ),
-                    TextButton(onPressed: (){},
+                    TextButton(onPressed: (){
+                     Get.to(()=>ChangeProfilePictureScreen());
+                    },
                         child: Text('Change Profile Picture')),
 
                     ],
+                ),
                 ),
               ),
               SizedBox(height: 8,),
@@ -56,25 +68,27 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: 16,),
               TSectionsetting(title: 'Profile Information', showActionButton: false,),
               SizedBox(height: 16,),
-              TProfileMenu(onPressed: (){ChangeName();}, title: 'Name', value: controller.name.value),
-              TProfileMenu(onPressed: (){}, title: 'UserName', value: controller.username.value),
+              Obx(()=>TProfileMenu(onPressed: ()=> Get.to(() =>  ChangeName()), title: 'Name', value: controller.name.value),),
+              Obx(()=>TProfileMenu(onPressed: ()=> Get.to(() =>  ChangeUserName()), title: 'UserName', value: controller.username.value)),
               SizedBox(height: 16,),
               Divider(),
               SizedBox(height: 16,),
               
               TSectionsetting(title: 'Personal Information', showActionButton: false,),
               SizedBox(height: 16,),
-              TProfileMenu(onPressed: (){_copyToClipboard(context);}, title: 'UserId', value: controller.userId,icon: Iconsax.copy,),
-              TProfileMenu(onPressed: (){}, title: 'Email', value: controller.email.value),
-              TProfileMenu(onPressed: (){}, title: 'Phone', value: controller.phone.value),
-              TProfileMenu(onPressed: (){}, title: 'Gender', value: controller.gender.value),
-              TProfileMenu(onPressed: (){}, title: 'Date of Birth', value: controller.dob.value),
+              TProfileMenu(onPressed: ()=>copyToClipboard(controller.userId), title: 'UserId', value: controller.userId,icon: Iconsax.copy,),
+              TProfileMenu(onPressed: ()=>copyToClipboard(controller.email.value), title: 'Email', value: controller.email.value,icon: Iconsax.copy),
+              Obx(()=>TProfileMenu(onPressed: ()=> Get.to(()=>ChangePhoneNumber()), title: 'Phone', value: controller.phone.value)),
+              Obx(()=> TProfileMenu(onPressed: ()=> Get.to(()=>ChangeGender()), title: 'Gender', value: controller.gender.value)),
+              Obx(()=>TProfileMenu(onPressed: ()=> Get.to(()=>ChangeDateOfBirth()), title: 'Date of Birth', value: controller.dob.value)),
             Divider(),
             SizedBox(height: 16,),
             
             Center(
               child: TextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    deleteAccountWarningPop();
+                  },
                   child:Text('Close Account',
                   style: TextStyle(color: Colors.red),)),
             )  
@@ -86,7 +100,15 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-void _copyToClipboard(BuildContext context) {
-  const String codeToCopy = '';
-  Clipboard.setData(const ClipboardData(text: codeToCopy));
+void copyToClipboard(String text) {
+  Clipboard.setData(ClipboardData(text: text)).then((_) {
+    Get.snackbar(
+      'Success',
+      'Text copied to clipboard',
+      snackPosition: SnackPosition.TOP,
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+    );
+  });
 }

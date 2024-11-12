@@ -54,7 +54,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   SizedBox(height: 32,),
                   ListTile(
                     leading: ClipOval(
-                      child: CachedNetworkImage(
+                      child: Obx(()=>CachedNetworkImage(
                         height: 80-12*2,
                         width: 80-12*2,
                         fit: BoxFit.cover,
@@ -63,15 +63,15 @@ class _SettingScreenState extends State<SettingScreen> {
                         const CircularProgressIndicator(),
                         errorWidget: (context, url, error) =>
                             Image.asset('assets/images/my.png'),
-                      ),
+                      )),
                     ),
-                    title: Text(controller.name.value,
-                    style: Theme.of(context).textTheme.headlineSmall!.apply(color:Colors.white),),
+                    title: Obx(()=>Text(controller.name.value,
+                    style: Theme.of(context).textTheme.headlineSmall!.apply(color:Colors.white),)),
                     subtitle:Text(controller.email.value,
                       style: Theme.of(context).textTheme.bodyMedium!.apply(color:Colors.grey.shade300),),
                     trailing :IconButton(onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
-                    }, icon: Icon(Icons.edit,color: Colors.white,)),
+                    }, icon: Icon(Iconsax.edit,color: Colors.white,)),
                   )
                 ],
               )
@@ -81,13 +81,6 @@ class _SettingScreenState extends State<SettingScreen> {
               children: [
                 TSectionsetting(title: 'Account Setting',showActionButton: false,),
                 SizedBox(height: 16,),
-                TSettingBody(
-                  icon: Iconsax.safe_home,
-                  title: 'My Address',
-                  subtitle: 'Set the address',
-                  traling: null,
-                  onTap: (){},
-                ),
                 TSettingBody(
                   icon: Icons.add,
                   title: 'My Appointment',
@@ -127,6 +120,21 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
                 SizedBox(height:
                   16,),
+                TSettingBody(
+                  icon: Icons.question_answer_outlined,
+                  title: 'FAQs',
+                  subtitle: 'Frequently Asked Questions',
+                  traling: null,
+                  onTap: (){},
+                ),
+                SizedBox(height: 16,),
+                TSettingBody(
+                  icon: Iconsax.message,
+                  title: 'Feedback',
+                  subtitle: 'Add your Feedback',
+                  traling: null,
+                  onTap: (){},
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
