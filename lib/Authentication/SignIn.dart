@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fyp_pro/publicdashboard/Customs/navbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../AlimDashboard/alim_dashboard.dart';
+import '../CommonFeatures/Customs/navbar.dart';
 import '../adminDashboard/admin_dashboard.dart';
 import 'SignUp.dart';
 import 'package:fyp_pro/Authentication/forgetpassword.dart';
@@ -165,7 +165,7 @@ class _SigninState extends State<Signin> {
       if (alimSnapshot.exists) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => AlimDashboard()),
+          MaterialPageRoute(builder: (context) => AlimDashboardMain()),
         );
         return; // Exit after navigation
       }

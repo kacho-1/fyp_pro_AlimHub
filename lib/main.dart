@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fyp_pro/publicdashboard/CommunityForum/routes/routes.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomColor.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Authentication/SignIn.dart';
-import 'publicdashboard/Customs/navbar.dart'; // Public dashboard
 import 'AlimDashboard/alim_dashboard.dart';  // Alim dashboard
+import 'CommonFeatures/CommunityForum/routes/routes.dart';
+import 'CommonFeatures/Customs/CustomColor.dart';
+import 'CommonFeatures/Customs/navbar.dart';
 import 'adminDashboard/admin_dashboard.dart'; // Admin dashboard
 import 'firebase_options.dart';
 
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
     if (isLoggedIn) {
       // Navigate to the dashboard based on the user's role
       if (userRole == 'Alim') {
-        return AlimDashboard();  // Alim dashboard screen
+        return AlimDashboardMain();  // Alim dashboard screen
       } else if (userRole == 'Public') {
         return Navigati();       // Public dashboard screen
       } else if (userRole == 'Admin') {

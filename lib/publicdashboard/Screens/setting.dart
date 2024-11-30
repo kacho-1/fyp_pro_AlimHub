@@ -2,16 +2,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/Authentication/SignIn.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomAppbar.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomContainier.dart';
-import 'package:fyp_pro/publicdashboard/Customs/customSettingsection.dart';
-import 'package:fyp_pro/publicdashboard/Profile/profilescreen.dart';
+import 'package:fyp_pro/CommonFeatures/Profile/profilescreen.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Customs/CustomSettingboarding.dart';
-import '../Profile/Controller/Profilecontroller.dart';
+
+import '../../CommonFeatures/Customs/CustomAppbar.dart';
+import '../../CommonFeatures/Customs/CustomContainier.dart';
+import '../../CommonFeatures/Customs/CustomSettingboarding.dart';
+import '../../CommonFeatures/Customs/customSettingsection.dart';
+import '../../CommonFeatures/Profile/Controller/Profilecontroller.dart';
+
 
 class SettingScreen extends StatefulWidget {
    SettingScreen({super.key});

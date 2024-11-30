@@ -2,20 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomAppPortion.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomAppbar.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomColor.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomContainier.dart';
-import 'package:fyp_pro/publicdashboard/Profile/Controller/Profilecontroller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hijri/hijri_calendar.dart';
-import 'package:fyp_pro/publicdashboard/PrayerTiming/UpcomingPrayerTime.dart';
 import 'package:location/location.dart';
-import 'package:universal_io/io.dart';
-import 'package:flutter/foundation.dart';
+import '../../CommonFeatures/CommunityForum/Main/Controller/main_screen_controller.dart';
+import '../../CommonFeatures/Customs/CustomAppPortion.dart';
+import '../../CommonFeatures/Customs/CustomAppbar.dart';
+import '../../CommonFeatures/Customs/CustomColor.dart';
+import '../../CommonFeatures/Customs/CustomContainier.dart';
+import '../../CommonFeatures/PrayerTiming/UpcomingPrayerTime.dart';
+import '../../CommonFeatures/Profile/Controller/Profilecontroller.dart';
 
-import '../CommunityForum/Main/Controller/main_screen_controller.dart';
 
 class HomeScreen extends StatefulWidget {
    HomeScreen({super.key});

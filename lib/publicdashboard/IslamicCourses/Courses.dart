@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomColor.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseModel.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseScreen.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseScreenlist.dart';

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomAppPortion.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomAppbar.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomContainier.dart';
-import 'package:fyp_pro/publicdashboard/Customs/customSettingsection.dart';
 
-import '../Customs/CustomSettingboarding.dart';
+import '../../CommonFeatures/Customs/CustomAppPortion.dart';
+import '../../CommonFeatures/Customs/CustomAppbar.dart';
+import '../../CommonFeatures/Customs/CustomContainier.dart';
+
 
 class CatagoryScreen extends StatelessWidget {
   const CatagoryScreen({super.key});

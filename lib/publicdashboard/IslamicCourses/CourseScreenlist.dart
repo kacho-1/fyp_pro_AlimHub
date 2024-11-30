@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomColor.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseCard.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseModel.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/Courses.dart';
+
+import '../../CommonFeatures/Customs/CustomColor.dart';
 
 class CourseListScreen extends StatelessWidget {
   final List<Course> courses = [

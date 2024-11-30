@@ -60,8 +60,11 @@ dependencies:
   cached_network_image: ^3.4.1
   unicons: ^3.0.0
   rxdart: ^0.28.0
-  timeago: ^3.7.0
   share_plus: ^10.1.0
+  flutter_datetime_picker: ^1.5.1
+  syncfusion_flutter_calendar: ^27.2.4
+  timeago: ^3.7.0
+
 
 
 dev_dependencies:
@@ -110,6 +113,7 @@ flutter:
     - assets/images/collection_icon/community.svg
     - assets/images/collection_icon/course.svg
     - assets/images/collection_icon/kiblat1.svg
+    - assets/images/collection_icon/card.svg
     - assets/images/my.png
     - assets/images/collection_icon/holyQuran.png
     - assets/images/collection_icon/home.png
@@ -117,6 +121,16 @@ flutter:
     - assets/images/Qiblah/kiblat_lingkar.svg
     - assets/images/Qiblah/kiblat_needle.svg
     - assets/images/bg_tasbih.jpg
+    - assets/images/alims/alim1.jpeg
+    - assets/images/alims/alim2.jpeg
+    - assets/images/alims/alim3.jpeg
+    - assets/images/alims/alim4.jpeg
+    - assets/images/payments/Easypaisa.jpg
+    - assets/images/payments/Jazzcash.jpg
+    - assets/images/payments/visa.jpg
+    - assets/images/payments/visacard.png
+    - assets/images/payments/mastercard.png
+    - assets/images/payments/mastercard1.png
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

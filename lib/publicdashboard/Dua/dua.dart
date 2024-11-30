@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fyp_pro/publicdashboard/Customs/CustomColor.dart';
+
+import '../../CommonFeatures/Customs/CustomColor.dart';
+
 class DuasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

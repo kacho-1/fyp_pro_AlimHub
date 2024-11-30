@@ -1,12 +1,12 @@
 
 import 'dart:convert';
-
-import 'package:fyp_pro/publicdashboard/Quran/Models/JusModel.dart';
-import 'package:fyp_pro/publicdashboard/Quran/Models/QariModel.dart';
-import 'package:fyp_pro/publicdashboard/Quran/Models/translationModel.dart';
-import 'package:fyp_pro/publicdashboard/Quran/Models/SurahModel.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+
+import '../../CommonFeatures/Quran/Models/JusModel.dart';
+import '../../CommonFeatures/Quran/Models/QariModel.dart';
+import '../../CommonFeatures/Quran/Models/SurahModel.dart';
+import '../../CommonFeatures/Quran/Models/translationModel.dart';
 
 class ApiServices {
   final endpointUrl = "http://api.alquran.cloud/v1/surah";

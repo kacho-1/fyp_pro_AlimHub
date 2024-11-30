@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_pro/AlimDashboard/Screens/NavigationScreen.dart';
+import 'package:fyp_pro/AlimDashboard/Screens/homescreen.dart';
+class AlimDashboardMain extends StatefulWidget {
+  const AlimDashboardMain({super.key});
 
-class AlimDashboard extends StatelessWidget {
+  @override
+  State<AlimDashboardMain> createState() => _AlimDashboardMainState();
+}
+
+class _AlimDashboardMainState extends State<AlimDashboardMain> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Alim Dashboard'),
-      ),
-      body: Center(
-        child: Text('Welcome to Alim Dashboard'),
-      ),
+    return MaterialApp(
+      home:AlimBTNavbarMain(),
+
     );
   }
 }

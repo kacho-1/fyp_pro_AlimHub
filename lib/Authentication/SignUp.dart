@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fyp_pro/publicdashboard/Profile/Controller/Profilecontroller.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,6 +9,8 @@ import 'package:csc_picker/csc_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
+
+import '../CommonFeatures/Profile/Controller/Profilecontroller.dart';
 
 
 class Signup extends StatefulWidget {
