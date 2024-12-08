@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fyp_pro/CommonFeatures/Customs/CustomColor.dart';
 
 class AppointmentType extends StatelessWidget {
-  AppointmentType({super.key});
-
+  AppointmentType({super.key,required this.alimData});
+   final alimData;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

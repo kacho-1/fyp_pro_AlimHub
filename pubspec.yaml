@@ -64,6 +64,8 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   syncfusion_flutter_calendar: ^27.2.4
   timeago: ^3.7.0
+  geocoding: ^3.0.0
+
 
 
 

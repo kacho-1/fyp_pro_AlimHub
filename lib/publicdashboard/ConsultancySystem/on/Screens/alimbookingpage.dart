@@ -1,12 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Screens/paymnetmethod.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../../../../CommonFeatures/Customs/CustomColor.dart';
-
+import 'paymnetmethod.dart';
 
 class AlimBookingPage extends StatefulWidget {
-  const AlimBookingPage({super.key});
+  final String alimData; // Pass Alim UID
+  const AlimBookingPage({required this.alimData, super.key});
 
   @override
   State<AlimBookingPage> createState() => _AlimBookingPageState();
@@ -18,31 +21,59 @@ class _AlimBookingPageState extends State<AlimBookingPage> {
   bool _timeSelected = false;
   int? _selectedTimeIndex;
 
-  // Mock time slots (to be dynamically set later)
-  final List<String> _timeSlots = [
-    '10:00 AM - 10:30 AM',
-    '11:00 AM - 11:30 AM',
-    '12:00 PM - 12:30 PM',
-    '02:00 PM - 02:30 PM',
-    '03:00 PM - 03:30 PM',
-  ];
+  List<Map<String, dynamic>> _timeSlots = []; // Dynamic time slots list
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final Map<String, List<Map<String, dynamic>>> _cachedTimeSlots = {}; // Cache for fetched slots
+
+  // Fetch time slots for the selected date
+  Future<void> _fetchTimeSlotsForDate() async {
+    if (_selectedDate == null) return;
+
+    String formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate!);
+
+    // Check cache first
+    if (_cachedTimeSlots.containsKey(formattedDate)) {
+      setState(() {
+        _timeSlots = _cachedTimeSlots[formattedDate]!;
+      });
+      return;
+    }
+
+    try {
+      var timeSlotsSnapshot = await _firestore
+          .collection('alim_availability')
+          .doc(widget.alimData)
+          .collection('timeSlots')
+          .doc(formattedDate) // Document ID is the date
+          .get();
+
+      if (timeSlotsSnapshot.exists) {
+        List<Map<String, dynamic>> slots = List<Map<String, dynamic>>.from(timeSlotsSnapshot['slots']);
+        setState(() {
+          _timeSlots = slots;
+          _cachedTimeSlots[formattedDate] = slots; // Cache the result
+        });
+      } else {
+        setState(() {
+          _timeSlots = [];
+        });
+      }
+    } catch (e) {
+      print('Error fetching time slots: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to fetch time slots. Please try again.')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
-        elevation: 0,
-        title: const Text(
-          'Appointment',
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.black,
-          ),
-        ),
+        title: const Text('Appointment'),
       ),
       body: Column(
-        children: <Widget>[
+        children: [
           // Calendar for selecting the date
           Expanded(
             flex: 2,
@@ -50,31 +81,26 @@ class _AlimBookingPageState extends State<AlimBookingPage> {
               view: CalendarView.month,
               todayHighlightColor: TColors.primary,
               selectionDecoration: BoxDecoration(
-                //color: Colors.grey[300].opacity, // Light grey color for the selected date
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: Colors.grey, width: 2),
               ),
-              onSelectionChanged: (CalendarSelectionDetails details) {
+              onSelectionChanged: (details) {
                 setState(() {
                   _selectedDate = details.date;
                   _dateSelected = true;
-                  _timeSelected = false; // Reset time selection on new date
-                  _selectedTimeIndex = null; // Clear previously selected time
+                  _timeSelected = false; // Reset time selection
+                  _selectedTimeIndex = null; // Clear selected time index
                 });
+                _fetchTimeSlotsForDate(); // Fetch slots for the selected date
               },
             ),
           ),
-          // Display the selected date
           if (_dateSelected)
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 "Selected Date: ${_selectedDate?.toLocal().toString().split(' ')[0]}",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
           if (_dateSelected)
@@ -82,19 +108,17 @@ class _AlimBookingPageState extends State<AlimBookingPage> {
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 "Available Slots for ${_selectedDate?.toLocal().toString().split(' ')[0]}",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
           // Time slots for the selected date
           if (_dateSelected)
             Container(
-              height: 100, // Set height for the horizontal scroll view
+              height: 100,
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal, // Horizontal scrolling
+              child: _timeSlots.isNotEmpty
+                  ? ListView.builder(
+                scrollDirection: Axis.horizontal,
                 itemCount: _timeSlots.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
@@ -114,15 +138,12 @@ class _AlimBookingPageState extends State<AlimBookingPage> {
                         color: _selectedTimeIndex == index
                             ? TColors.primary
                             : Colors.white,
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 1,
-                        ),
+                        border: Border.all(color: Colors.grey, width: 1),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Center(
                         child: Text(
-                          _timeSlots[index],
+                          "${_timeSlots[index]['startTime']} - ${_timeSlots[index]['endTime']}",
                           style: TextStyle(
                             color: _selectedTimeIndex == index
                                 ? Colors.white
@@ -134,56 +155,47 @@ class _AlimBookingPageState extends State<AlimBookingPage> {
                     ),
                   );
                 },
+              )
+                  : Center(
+                child: Text(
+                  "No available slots for this date.",
+                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                ),
               ),
             ),
-          // Confirm button
           if (_dateSelected && _timeSelected)
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: ElevatedButton(
-               style: ElevatedButton.styleFrom(
-                elevation: 5,
-                backgroundColor: TColors.primary,
-                minimumSize: Size (200,50),
-
-               ),
+                style: ElevatedButton.styleFrom(
+                  elevation: 5,
+                  backgroundColor: TColors.primary,
+                  minimumSize: const Size(200, 50),
+                ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentMethodPage()));
-                  // Confirmation logic to be implemented later
-                 /* final selectedTime = _timeSlots[_selectedTimeIndex!];
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text("Confirm Appointment"),
-                      content: Text(
-                          "Date: ${_selectedDate?.toLocal().toString().split(' ')[0]}\nTime: $selectedTime"),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text("Cancel"),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            // Placeholder for booking logic
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Appointment Confirmed!"),
-                              ),
-                            );
-                          },
-                          child: const Text("Confirm"),
-                        ),
-                      ],
-                    ),
-                  );*/
+                  if (!_dateSelected || !_timeSelected) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Please select a date and time slot.')),
+                    );
+                    return;
+                  }
+
+                  Get.to(
+                        () => PaymentMethodPage(),
+                    arguments: {
+                      'selectedDate': _selectedDate!,
+                      'selectedTimeSlot': _timeSlots[_selectedTimeIndex!],
+                    },
+                  );
                 },
-                child: const Text("Proceed to Payment",
+                child: const Text(
+                  "Proceed to Payment",
                   style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white
-                  ),),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
         ],

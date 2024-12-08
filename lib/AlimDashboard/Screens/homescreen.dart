@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp_pro/publicdashboard/Screens/setting.dart';
+import 'package:fyp_pro/AlimDashboard/Consultancy%20System/Screens/ConsultancyNavbar.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hijri/hijri_calendar.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../CommonFeatures/CommunityForum/Main/main_screen.dart';
 import '../../CommonFeatures/Customs/CustomAppbar.dart';
 import '../../CommonFeatures/Customs/CustomColor.dart';
@@ -61,29 +60,36 @@ class AlimHomeScreen extends StatelessWidget {
                       fontSize: 24,
                     ),
                   ),
-                  SizedBox(height: 18,),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ListTile(
-                        leading: ClipOval(
-                          child: Obx(()=>CachedNetworkImage(
-                            height: 80-12*2,
-                            width: 80-12*2,
-                            fit: BoxFit.cover,
-                            imageUrl: controller.imageUrl.value,
-                            placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                            errorWidget: (context, url, error) =>
-                                Image.asset('assets/images/my.png'),
+                  SizedBox(height: 15,),
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ListTile(
+                          leading: ClipOval(
+                            child: Obx(()=>CachedNetworkImage(
+                              height: 80-12*2,
+                              width: 80-12*2,
+                              fit: BoxFit.cover,
+                              imageUrl: controller.imageUrl.value,
+                              placeholder: (context, url) =>
+                              const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  Image.asset('assets/images/my.png'),
+                            )),
+                          ),
+                          title: Obx(()=>Text(controller.name.value,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade300
+                            ),maxLines: 1,
                           )),
+                          subtitle:Text(controller.email.value,
+                            style: Theme.of(context).textTheme.bodyMedium!.apply(color:Colors.grey.shade300),textAlign: TextAlign.justify,),
                         ),
-                        title: Obx(()=>Text(controller.name.value,
-                          style: Theme.of(context).textTheme.headlineSmall!.apply(color:Colors.white),)),
-                        subtitle:Text(controller.email.value,
-                          style: Theme.of(context).textTheme.bodyMedium!.apply(color:Colors.grey.shade300),),
-                      ),
-                    ],
+                      ],
+                    ),
                   )
                 ],
               )
@@ -106,10 +112,10 @@ class AlimHomeScreen extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.add),
-              title: Text('Add'),
+              title: Text('Add Appointments'),
               onTap: () {
                 // Navigate to the Create Event Screen
-
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ConsultancyBTNavbar()));
 
               },
             ),
@@ -127,7 +133,7 @@ class AlimHomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Assalaam-Alaikum ',style: Theme.of(context).textTheme.labelMedium!.apply(color: Colors.white60,fontFamily: 'Poppins')),
-                            Text('Kacho Kamran',style: Theme.of(context).textTheme.headlineSmall!.apply(color: Colors.grey.shade300,fontFamily: 'Poppins-Medium',)),
+                            Obx(()=>Text(controller.name.value,style: Theme.of(context).textTheme.headlineSmall!.apply(color: Colors.grey.shade300,fontFamily: 'Poppins-Medium',))),
 
 
                           ],

@@ -16,7 +16,7 @@ import '../../CommonFeatures/Profile/Controller/Profilecontroller.dart';
 
 
 class HomeScreen extends StatefulWidget {
-   HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -82,28 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ]
 
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding:EdgeInsets.symmetric(horizontal: 24),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                            color: TColors.textWhite,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: Colors.white)
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.search,color: TColors.primary,),
-                            SizedBox(width: 5,),
-                            Text('Click her to Search',style: Theme.of(context).textTheme.bodySmall),
-
-                          ],
-                        ),
-
-                      ),
-                    ),
                     SizedBox(height: 14,),
 
                     ListTile(
@@ -117,27 +95,27 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: <InlineSpan>[
                                 WidgetSpan(
                                   child: Padding(padding: EdgeInsets.all(4),
-                                    child: Text( hijra.hDay.toString(),
-                                        style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
+                                      child: Text( hijra.hDay.toString(),
+                                          style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
-                                    ))),
+                                          ))),
 
 
-                    ),
+                                ),
                                 WidgetSpan(
                                   child: Padding(padding: EdgeInsets.all(4),
 
-                                  child: Text(hijra.longMonthName,style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
+                                      child: Text(hijra.longMonthName,style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
-                                  ))),
+                                      ))),
 
                                 ),
 
                                 WidgetSpan(
                                   child: Padding(padding: EdgeInsets.all(4),
-                                  child: Text('${hijra.hYear} AH', style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
+                                    child: Text('\n${hijra.hYear} AH', style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
-                                  )),),
+                                    )),),
 
 
                                 )
@@ -145,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
-                          ),
+                            ),
                           )],
                       ),
 

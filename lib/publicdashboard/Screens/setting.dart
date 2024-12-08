@@ -3,6 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/Authentication/SignIn.dart';
 import 'package:fyp_pro/CommonFeatures/Profile/profilescreen.dart';
+import 'package:fyp_pro/publicdashboard/setting/screens/FAQ.dart';
+import 'package:fyp_pro/publicdashboard/setting/screens/location.dart';
+import 'package:fyp_pro/publicdashboard/setting/screens/privatepolicy.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
@@ -13,6 +16,10 @@ import '../../CommonFeatures/Customs/CustomContainier.dart';
 import '../../CommonFeatures/Customs/CustomSettingboarding.dart';
 import '../../CommonFeatures/Customs/customSettingsection.dart';
 import '../../CommonFeatures/Profile/Controller/Profilecontroller.dart';
+import '../ConsultancySystem/on/Screens/ApointmentPAge.dart';
+import '../ConsultancySystem/on/paymentmethods/Card/Screens/cardmainscreen.dart';
+import '../setting/screens/bankaccountscreen.dart';
+
 
 
 class SettingScreen extends StatefulWidget {
@@ -88,7 +95,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: 'My Appointment',
                   subtitle: 'Alim apointments',
                   traling: null,
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ApointmentPage()));
+                  },
                 ),
 
                 TSettingBody(
@@ -96,7 +105,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: 'Bank Account',
                   subtitle: 'Add Account Details',
                   traling: null,
-                  onTap: (){},
+                  onTap: (){
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=> BankAccount()));
+                  },
                 ),
                 TSettingBody(
                   icon: Icons.notifications_none,
@@ -110,7 +121,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: 'Account Privacy',
                   subtitle: 'Managed Data usage and connected accounts ',
                   traling: null,
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> PrivacyPolicyPage()));
+                  },
                 ),
                 SizedBox(height: 16,),
                 TSettingBody(
@@ -118,7 +131,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: 'Location',
                   subtitle: 'Set the location',
                   traling: null,
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> LocationScreen()));
+                  },
                 ),
                 SizedBox(height:
                   16,),
@@ -127,7 +142,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: 'FAQs',
                   subtitle: 'Frequently Asked Questions',
                   traling: null,
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> FAQPage()));
+                  },
                 ),
                 SizedBox(height: 16,),
                 TSettingBody(

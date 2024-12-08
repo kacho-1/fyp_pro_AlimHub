@@ -13,7 +13,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    //options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -33,11 +33,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: TColors.primary,
-        hintColor: Colors.grey.shade600,
-        primarySwatch: Colors.grey,
-      ),
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: TColors.primary),
+          useMaterial3: true,
+        ),
       home: _getInitialScreen(),
         getPages: getPages()
     );

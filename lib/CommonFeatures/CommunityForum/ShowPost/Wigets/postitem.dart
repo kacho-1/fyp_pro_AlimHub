@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_pro/CommonFeatures/Profile/Controller/Profilecontroller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
@@ -14,7 +15,7 @@ class PostItem extends StatelessWidget {
   }) : super(key: key);
 
   final Post post;
-  // GetX dependency injection
+  // GetX dependenc_homeControllery injection
   final _homeController = Get.find<ShowPostController>();
 
   @override
@@ -48,6 +49,7 @@ class PostItem extends StatelessWidget {
                 ),
               ),
             ),
+
             const SizedBox(height: 16),
 
             // Display Post Title

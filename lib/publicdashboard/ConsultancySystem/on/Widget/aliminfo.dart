@@ -4,7 +4,8 @@ import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Widget/alimcards.da
 import '../../../../CommonFeatures/Customs/CustomColor.dart';
 
 class AlimInfo extends StatelessWidget {
-  const AlimInfo({super.key});
+  final alimexperience;
+  const AlimInfo({super.key,required this.alimexperience});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class AlimInfo extends StatelessWidget {
         SizedBox(width: 15,),
         AlimCards(
             label: 'Experences' ,
-            value: '10 years'),
+            value: ' ${alimexperience} years'),
         SizedBox(width: 15,),
         AlimCards(
             label: 'Rating' ,

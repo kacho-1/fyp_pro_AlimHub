@@ -23,6 +23,7 @@ class _EasyPaisaPaymentPageState extends State<EasyPaisaPaymentPage> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(

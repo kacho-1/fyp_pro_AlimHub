@@ -32,107 +32,59 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-
-            const Text(
-              'Card Details',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 50),
-            Form(
-                child: Column(
-              children: [
-
-
-            TextFormField(
-              controller: cardNumberController,
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(19),
-                CardNumberInputFormatter(),
-              ],
-              onChanged: (value) {
-                _detectCardType(value);
-              },
-              decoration: InputDecoration(
-                hintText: 'Card Number',
-                filled: true, // Enables the background color
-                fillColor: Colors.white,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: SvgPicture.asset(
-                    'assets/images/collection_icon/card.svg',
-                  ),
-                ),
-                suffixIcon: cardType != null
-                    ? Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Image.asset(
-                    cardType == 'Visa'
-                        ? 'assets/images/payments/visacard.png'
-                        : 'assets/images/payments/mastercard1.png',
-                    height: 54,
-                    width: 54,
-                  ),
-                )
-                    : null,
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: Colors.grey, // Border color when not focused
-                    width: 1.5,
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey, // Border color when not focused
-                    width: 1.5,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Colors.blue, // Border color when focused
-                    width: 2.0,
-                  ),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Colors.red, // Border color when there's an error
-                    width: 1.5,
-                  ),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Colors.red, // Border color when focused and there's an error
-                    width: 2.0,
-                  ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+        
+              const Text(
+                'Card Details',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: TextFormField(
-                controller: cardNameController,
-                keyboardType: TextInputType.text,
+              const SizedBox(height: 50),
+              Form(
+                  child: Column(
+                children: [
+        
+        
+              TextFormField(
+                controller: cardNumberController,
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(19),
+                  CardNumberInputFormatter(),
+                ],
+                onChanged: (value) {
+                  _detectCardType(value);
+                },
                 decoration: InputDecoration(
-                  hintText: 'Card Holder Name',
+                  hintText: 'Card Number',
                   filled: true, // Enables the background color
                   fillColor: Colors.white,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Icon(Icons.person_2_outlined),
+                    child: SvgPicture.asset(
+                      'assets/images/collection_icon/card.svg',
+                    ),
                   ),
+                  suffixIcon: cardType != null
+                      ? Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Image.asset(
+                      cardType == 'Visa'
+                          ? 'assets/images/payments/visacard.png'
+                          : 'assets/images/payments/mastercard1.png',
+                      height: 54,
+                      width: 54,
+                    ),
+                  )
+                      : null,
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(
                       color: Colors.grey, // Border color when not focused
@@ -169,153 +121,203 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                   ),
                 ),
               ),
-
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: cvvController,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(4),
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    decoration: InputDecoration(
-                      hintText: 'CVV',
-                      filled: true, // Enables the background color
-                      fillColor: Colors.white,
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Icon(Icons.lock_clock_outlined),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: TextFormField(
+                  controller: cardNameController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    hintText: 'Card Holder Name',
+                    filled: true, // Enables the background color
+                    fillColor: Colors.white,
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Icon(Icons.person_2_outlined),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.grey, // Border color when not focused
+                        width: 1.5,
                       ),
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.grey, // Border color when not focused
-                          width: 1.5,
-                        ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Colors.grey, // Border color when not focused
+                        width: 1.5,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
-                          color: Colors.grey, // Border color when not focused
-                          width: 1.5,
-                        ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Colors.blue, // Border color when focused
+                        width: 2.0,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
-                          color: Colors.blue, // Border color when focused
-                          width: 2.0,
-                        ),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Colors.red, // Border color when there's an error
+                        width: 1.5,
                       ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
-                          color: Colors.red, // Border color when there's an error
-                          width: 1.5,
-                        ),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
-                          color: Colors.red, // Border color when focused and there's an error
-                          width: 2.0,
-                        ),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Colors.red, // Border color when focused and there's an error
+                        width: 2.0,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(width: 20,),
-                Expanded(
-                  child: TextFormField(
-                    controller: expiredateController,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(5),
-                      FilteringTextInputFormatter.digitsOnly,
-                      CardMonthInputFormatter(),
-                    ],
-                    decoration: InputDecoration(
-                      hintText: 'MM/YY',
-                      filled: true, // Enables the background color
-                      fillColor: Colors.white,
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Icon(Icons.calendar_month_outlined),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.grey, // Border color when not focused
-                          width: 1.5,
+        
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: cvvController,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(4),
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      decoration: InputDecoration(
+                        hintText: 'CVV',
+                        filled: true, // Enables the background color
+                        fillColor: Colors.white,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Icon(Icons.lock_clock_outlined),
                         ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
-                          color: Colors.grey, // Border color when not focused
-                          width: 1.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
-                          color: Colors.blue, // Border color when focused
-                          width: 2.0,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
-                          color: Colors.red, // Border color when there's an error
-                          width: 1.5,
-                        ),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
-                          color: Colors.red, // Border color when focused and there's an error
-                          width: 2.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 100,),
-
-
-            Container(
-              width: double.infinity,
-                child:Center(
-
-                  child: Padding(
-                      padding: EdgeInsets.all(20),
-                      child: ElevatedButton(
-
-                          onPressed: (){
-
-                          } ,
-                          style: ElevatedButton.styleFrom(
-                            elevation: 5,
-                            backgroundColor: TColors.primary,
-                            minimumSize: Size (200,50),
-
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Colors.grey, // Border color when not focused
+                            width: 1.5,
                           ),
-                          child: Text('Conform Payment',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white
-                            ),))
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.grey, // Border color when not focused
+                            width: 1.5,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.blue, // Border color when focused
+                            width: 2.0,
+                          ),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.red, // Border color when there's an error
+                            width: 1.5,
+                          ),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.red, // Border color when focused and there's an error
+                            width: 2.0,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-            ),
-
-              ],
-            )),
-          ],
+                  SizedBox(width: 20,),
+                  Expanded(
+                    child: TextFormField(
+                      controller: expiredateController,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(5),
+                        FilteringTextInputFormatter.digitsOnly,
+                        CardMonthInputFormatter(),
+                      ],
+                      decoration: InputDecoration(
+                        hintText: 'MM/YY',
+                        filled: true, // Enables the background color
+                        fillColor: Colors.white,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Icon(Icons.calendar_month_outlined),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Colors.grey, // Border color when not focused
+                            width: 1.5,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.grey, // Border color when not focused
+                            width: 1.5,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.blue, // Border color when focused
+                            width: 2.0,
+                          ),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.red, // Border color when there's an error
+                            width: 1.5,
+                          ),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.red, // Border color when focused and there's an error
+                            width: 2.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 100,),
+        
+        
+              Container(
+                width: double.infinity,
+                  child:Center(
+        
+                    child: Padding(
+                        padding: EdgeInsets.all(20),
+                        child: ElevatedButton(
+        
+                            onPressed: (){
+        
+                            } ,
+                            style: ElevatedButton.styleFrom(
+                              elevation: 5,
+                              backgroundColor: TColors.primary,
+                              minimumSize: Size (200,50),
+        
+                            ),
+                            child: Text('Conform Payment',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                              ),))
+                    ),
+                  ),
+              ),
+        
+                ],
+              )),
+            ],
+          ),
         ),
       ),
     );

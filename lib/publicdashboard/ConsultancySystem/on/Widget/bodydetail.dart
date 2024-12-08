@@ -3,7 +3,15 @@ import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Widget/aliminfo.dar
 import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/utility/config.dart';
 
 class DetailBody extends StatelessWidget {
-  const DetailBody({super.key});
+  final String aboutAlim;
+  final String alimExperience;
+
+
+  const DetailBody({
+    Key? key,
+    required this.aboutAlim,
+    required this.alimExperience,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,24 +21,32 @@ class DetailBody extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children:<Widget> [
+        children: <Widget>[
           Config.spaceSmall,
-          AlimInfo(),
-          Config.spaceBig,
-          Text('About Alim',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-          ),),
-          Config.spaceSmall,
-          Text('Maulana Tariq Jamil is a prominent Deobandi scholar who is also one of the most popular preachers in Pakistan. He belongs to the Tablighi Jamaat group.',
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            height: 1.5,
+          AlimInfo(alimexperience: alimExperience,
 
+          ), // Keep this as is, or modify based on available data
+          Config.spaceBig,
+          Text(
+            'About Alim',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+            ),
           ),
-          softWrap: true,
-              textAlign: TextAlign.justify,)
+          Config.spaceSmall,
+          Text(
+            aboutAlim, // Display alim's description
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              height: 1.5,
+              color: Colors.grey,
+            ),
+            softWrap: true,
+            textAlign: TextAlign.justify,
+          ),
+          Config.spaceSmall,
+
         ],
       ),
     );
