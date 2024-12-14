@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseCard.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseModel.dart';
-import 'package:fyp_pro/publicdashboard/IslamicCourses/Courses.dart';
-
 import '../../CommonFeatures/Customs/CustomColor.dart';
 
 class CourseListScreen extends StatelessWidget {
@@ -55,6 +53,8 @@ class CourseListScreen extends StatelessWidget {
       'Duas, or supplications, are a powerful way to connect with Allah. In this course, you will learn the meaning and significance of essential daily duas, such as those for morning and evening, before meals, and during difficult times. We will also teach the correct pronunciation and provide tips on incorporating these duas into your daily routine. Strengthen your spiritual life by mastering the duas that can bring peace and blessings into your life.',
     ),
   ];
+
+   CourseListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

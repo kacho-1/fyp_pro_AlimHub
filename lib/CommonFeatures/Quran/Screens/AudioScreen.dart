@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,7 +12,7 @@ import '../Models/SurahModel.dart';
 
 
 class AudioScreen extends StatefulWidget {
-  const AudioScreen({Key? key,required this.qari , required this.index ,required this.list}) : super(key: key);
+  const AudioScreen({super.key,required this.qari , required this.index ,required this.list});
   final Qari qari;
   final int index;
   final List<Surah>? list;
@@ -25,7 +24,7 @@ class AudioScreen extends StatefulWidget {
 class _AudioScreenState extends State<AudioScreen> {
   final _player = AudioPlayer();
   bool isLoopingCurrentItem = false;
-  Duration defaultDuration = Duration(milliseconds: 1);
+  Duration defaultDuration = const Duration(milliseconds: 1);
   String? ind;
   int currentIndex = 0;
   int dataIndex = 0;
@@ -42,9 +41,9 @@ class _AudioScreenState extends State<AudioScreen> {
     // Surah is from 1 to 114 so
     // 001 , 002 , 003 ..... 010, 011 , 012 , .....099 , 100 , 101, ...114
     if(widget.index<10){
-      ind = "00"+(widget.index.toString());
+      ind = "00${widget.index}";
     }else if(widget.index<100){
-      ind  = "0"+(widget.index.toString());
+      ind  = "0${widget.index}";
     }else if(widget.index>100){
       ind = (widget.index.toString());
     }
@@ -52,7 +51,7 @@ class _AudioScreenState extends State<AudioScreen> {
 
     _initAudioPlayer(ind!,widget.qari);
 
-    print('index ${widget.index}   current Index ${currentIndex}');
+    print('index ${widget.index}   current Index $currentIndex');
     super.initState();
   }
 
@@ -73,10 +72,11 @@ class _AudioScreenState extends State<AudioScreen> {
   }
 
   void handleLooping() async {
-    if (isLoopingCurrentItem)
+    if (isLoopingCurrentItem) {
       await _player.setLoopMode(LoopMode.one);
-    else
+    } else {
       await _player.setLoopMode(LoopMode.off);
+    }
     setState(() {
       isLoopingCurrentItem = !isLoopingCurrentItem;
     });
@@ -102,21 +102,21 @@ class _AudioScreenState extends State<AudioScreen> {
           onPressed: (){
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios , color: Colors.black,),
+          icon: const Icon(Icons.arrow_back_ios , color: Colors.black,),
         ),
-        title: Text('Now Playing',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800),),
+        title: const Text('Now Playing',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800),),
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30),
           child: Column(
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.2,
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: TColors.primary,
                     boxShadow: [
@@ -133,14 +133,14 @@ class _AudioScreenState extends State<AudioScreen> {
                     Text(
                       widget.list![currentIndex].name!,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'Total Aya : ${widget.list![currentIndex].numberOfAyahs}',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ],
                 ),
@@ -163,7 +163,7 @@ class _AudioScreenState extends State<AudioScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Container(
                 // margin: EdgeInsets.symmetric(horizontal: _width * 0.05),
                 child: Row(
@@ -177,9 +177,9 @@ class _AudioScreenState extends State<AudioScreen> {
                               currentIndex--;
                             });
                             if(dataIndex<10){
-                              ind = "00"+(dataIndex.toString());
+                              ind = "00$dataIndex";
                             }else if(dataIndex<100){
-                              ind  = "0"+(dataIndex.toString());
+                              ind  = "0$dataIndex";
                             }else if(dataIndex>100){
                               ind = (dataIndex.toString());
                             }
@@ -209,7 +209,7 @@ class _AudioScreenState extends State<AudioScreen> {
                               ),
                               // width: _width * 0.24,
                               // height: _width * 0.24,
-                              child: SpinKitRipple(
+                              child: const SpinKitRipple(
                                 color: Colors.black,
                                 duration: Duration(milliseconds: 800),
                                 //  size: _width * 0.24,
@@ -220,7 +220,7 @@ class _AudioScreenState extends State<AudioScreen> {
                             child: Container(
                               //width: _width * 0.24,
                               //height: _width * 0.24,
-                              padding: EdgeInsets.all(12),
+                              padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
                                 color: TColors.primary,
                                 borderRadius: BorderRadius.circular(20),
@@ -238,7 +238,7 @@ class _AudioScreenState extends State<AudioScreen> {
                             child: Container(
                               //  width: _width * 0.24,
                               //  height: _width * 0.24,
-                              padding: EdgeInsets.all(12),
+                              padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
                                 color: TColors.primary,
                                 borderRadius: BorderRadius.circular(20),
@@ -256,7 +256,7 @@ class _AudioScreenState extends State<AudioScreen> {
                             child: Container(
                               //  width: _width * 0.24,
                               //  height: _width * 0.24,
-                              padding: EdgeInsets.all(12),
+                              padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
                                 color: TColors.primary,
                                 borderRadius: BorderRadius.circular(20),
@@ -280,9 +280,9 @@ class _AudioScreenState extends State<AudioScreen> {
                             dataIndex = currentIndex + 1;
                           });
                           if(dataIndex<10){
-                            ind = "00"+(dataIndex.toString());
+                            ind = "00$dataIndex";
                           }else if(dataIndex<100){
-                            ind  = "0"+(dataIndex.toString());
+                            ind  = "0$dataIndex";
                           }else if(dataIndex>100){
                             ind = (dataIndex.toString());
                           }
@@ -321,7 +321,7 @@ class _AudioScreenState extends State<AudioScreen> {
                       stream: _player.speedStream,
                       builder: (context, snapshot) => IconButton(
                         icon: Text("${snapshot.data?.toStringAsFixed(1)}x",
-                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                            style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
                         onPressed: () {
                           showSliderDialog(
                             context: context,
@@ -339,11 +339,11 @@ class _AudioScreenState extends State<AudioScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               currentIndex >= 113 ? Container() :Expanded(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       color: Colors.white,
                       boxShadow: [
@@ -360,28 +360,28 @@ class _AudioScreenState extends State<AudioScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('UPCOMING SURAH',style: TextStyle(color: Colors.black,
+                        const Text('UPCOMING SURAH',style: TextStyle(color: Colors.black,
                             fontSize: 20,fontWeight: FontWeight.bold),),
-                        SizedBox(height: 12,),
+                        const SizedBox(height: 12,),
                         Visibility(
                           visible: (currentIndex<=112) ? true : false,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(Icons.play_circle_fill,color: TColors.primary,),
-                              Text(widget.list![currentIndex+1].name!,style: TextStyle(color: Colors.black,
+                              const Icon(Icons.play_circle_fill,color: TColors.primary,),
+                              Text(widget.list![currentIndex+1].name!,style: const TextStyle(color: Colors.black,
                                   fontSize: 20),),
                             ],
                           ),
                         ),
-                        SizedBox(height: 12,),
+                        const SizedBox(height: 12,),
                         Visibility(
                           visible: ( currentIndex <=111) ? true : false,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Icon(currentIndex>111 ? null :Icons.play_circle_fill,color: TColors.primary,),
-                              Text(currentIndex>111 ? '' : widget.list![currentIndex+2].name!,style: TextStyle(color: Colors.black,
+                              Text(currentIndex>111 ? '' : widget.list![currentIndex+2].name!,style: const TextStyle(color: Colors.black,
                                   fontSize: 20),),
                             ],
                           ),
@@ -402,7 +402,7 @@ class _AudioScreenState extends State<AudioScreen> {
     // Inform the operating system of our app's audio attributes etc.
     // We pick a reasonable default for an app that plays speech.
     final session = await AudioSession.instance;
-    await session.configure(AudioSessionConfiguration.speech());
+    await session.configure(const AudioSessionConfiguration.speech());
     // Listen to errors during playback.
     _player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {
@@ -437,7 +437,7 @@ class SeekBar extends StatefulWidget {
   final Duration bufferedPosition;
   final ValueChanged<Duration>? onChanged;
 
-  SeekBar({
+  const SeekBar({super.key, 
     required this.duration,
     required this.position,
     required this.bufferedPosition,
@@ -453,7 +453,7 @@ class _SeekBarState extends State<SeekBar> {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return Column(
       children: [
         SliderTheme(
@@ -462,9 +462,9 @@ class _SeekBarState extends State<SeekBar> {
             inactiveTrackColor: Colors.grey,
             trackHeight: 5.0,
             thumbColor: TColors.primary,
-            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10),
+            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10),
             overlayColor: Colors.purple.withAlpha(32),
-            overlayShape: RoundSliderOverlayShape(overlayRadius: 14.0),
+            overlayShape: const RoundSliderOverlayShape(overlayRadius: 14.0),
           ),
           child: Slider(
             min: 0.0,
@@ -483,7 +483,7 @@ class _SeekBarState extends State<SeekBar> {
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: _width * 0.05),
+          margin: EdgeInsets.symmetric(horizontal: width * 0.05),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -492,14 +492,14 @@ class _SeekBarState extends State<SeekBar> {
                 style: TextStyle(
                     color: Colors.black,
                     // fontFamily: MyFont.alegreyaSansRegular,
-                    fontSize: _width * 0.05),
+                    fontSize: width * 0.05),
               ),
               Text(
                 _durationText,
                 style: TextStyle(
                     color: Colors.black,
                     //  fontFamily: MyFont.alegreyaSansRegular,
-                    fontSize: _width * 0.05),
+                    fontSize: width * 0.05),
               ),
             ],
           ),
@@ -535,13 +535,13 @@ void showSliderDialog({
       title: Text(title, textAlign: TextAlign.center),
       content: StreamBuilder<double>(
         stream: stream,
-        builder: (context, snapshot) => Container(
+        builder: (context, snapshot) => SizedBox(
           height: 100.0,
           child: Column(
             children: [
               Text(
                 '${snapshot.data?.toStringAsFixed(1)}$valueSuffix',
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Fixed',
                   fontWeight: FontWeight.bold,
                   fontSize: 24.0,

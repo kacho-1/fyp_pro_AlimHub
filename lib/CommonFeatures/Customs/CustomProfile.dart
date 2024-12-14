@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TProfileMenu extends StatelessWidget {
-   TProfileMenu({super.key,
+   const TProfileMenu({super.key,
   required this.onPressed,
   required this.title,
   required this.value,
@@ -15,7 +15,7 @@ class TProfileMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
-      child: Padding(padding: EdgeInsets.symmetric(vertical:16/1.5),
+      child: Padding(padding: const EdgeInsets.symmetric(vertical:16/1.5),
       child: Row(
         children: [
           Expanded(

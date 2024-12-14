@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class FAQPage extends StatelessWidget {
+  const FAQPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Frequently Asked Questions'),
+        title: const Center(child: Text('FAQ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),)),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -89,20 +91,22 @@ class FAQPage extends StatelessWidget {
 
   Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),
+
+
       ),
     );
   }
 
   Widget _buildParagraph(String content) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 10.0),
+      padding: const EdgeInsets.only(bottom: 10.0),
       child: Text(
         content,
-        style: TextStyle(fontSize: 16),
+        style: const TextStyle(fontSize: 16),
         textAlign: TextAlign.justify,
       ),
     );

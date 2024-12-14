@@ -3,16 +3,18 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
+import '../../../CommonFeatures/Customs/CustomColor.dart';
 import '../../../CommonFeatures/Profile/Controller/Profilecontroller.dart';
 
-
 class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
+
 final controller = Get.put(ProfileController());
+
 class _LocationScreenState extends State<LocationScreen> {
   String _country = '';
   String _city = '';
@@ -80,7 +82,7 @@ class _LocationScreenState extends State<LocationScreen> {
       String email = controller.email.value;
 
       // Create a unique collection name based on the location (country, city, area)
-      String locationCollectionName = 'location_${_country}_$_city$_area';
+      String locationCollectionName = 'location';
 
       // Save the data in the new collection named after the location
       await FirebaseFirestore.instance
@@ -97,7 +99,7 @@ class _LocationScreenState extends State<LocationScreen> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Location saved successfully!')),
+        const SnackBar(content: Text('Location saved successfully!')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -110,36 +112,63 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Location'),
+        title: const Center(child: Text('Select Location',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),)),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start, // Center vertically
+          crossAxisAlignment: CrossAxisAlignment.start, // Center horizontally
           children: <Widget>[
             if (_errorMessage.isNotEmpty)
               Padding(
-                padding: EdgeInsets.only(bottom: 16.0),
-                child: Text(_errorMessage, style: TextStyle(color: Colors.red, fontSize: 16)),
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Text(
+                    _errorMessage,
+                    style: const TextStyle(color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold)
+                ),
               ),
             if (_country.isNotEmpty && _city.isNotEmpty && _area.isNotEmpty)
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Country: $_country", style: TextStyle(fontSize: 18)),
-                  Text("City: $_city", style: TextStyle(fontSize: 18)),
-                  Text("Area: $_area", style: TextStyle(fontSize: 18)),
-                  SizedBox(height: 20),
+                  TextField(
+                    controller: TextEditingController(text: _country),
+                    decoration: const InputDecoration(labelText: "Country", border: OutlineInputBorder()),
+                    readOnly: true, // Make it non-editable
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: TextEditingController(text: _city),
+                    decoration: const InputDecoration(labelText: "City", border: OutlineInputBorder()),
+                    readOnly: true, // Make it non-editable
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: TextEditingController(text: _area),
+                    decoration: const InputDecoration(labelText: "Area", border: OutlineInputBorder()),
+                    readOnly: true, // Make it non-editable
+                  ),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: _saveLocation,
-                    child: Text('Save Location'),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 5,
+                      backgroundColor: TColors.primary,
+                      minimumSize: const Size(200, 50),
+                    ),
+                    child: const Text(
+                      'Save Location',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ],
               ),
             if (_country.isEmpty || _city.isEmpty || _area.isEmpty)
-              Center(
-                child: CircularProgressIndicator(),
-              ),
+              const CircularProgressIndicator(),
           ],
         ),
       ),

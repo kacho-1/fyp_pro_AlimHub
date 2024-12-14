@@ -86,7 +86,7 @@ class SignupController extends GetxController {
             'createdAt': FieldValue.serverTimestamp(),
           });
         }
-      } on FirebaseAuthException catch (e) {
+      } on FirebaseAuthException {
         // Handle errors
       } finally {
         isLoading = false;
@@ -104,12 +104,12 @@ class SignupController extends GetxController {
         8, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
 
     try {
-      await storage.ref('uploads/pic/${randomStr}').putFile(file);
+      await storage.ref('uploads/pic/$randomStr').putFile(file);
     } on FirebaseException catch (e) {
       print(e.code);
     }
 
-    String downloadURL = await storage.ref('uploads/pic/${randomStr}').getDownloadURL();
+    String downloadURL = await storage.ref('uploads/pic/$randomStr').getDownloadURL();
     return downloadURL;
   }
 

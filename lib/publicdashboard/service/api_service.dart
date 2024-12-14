@@ -79,7 +79,7 @@ Future<SurahTranslationList> getTranslation(int index, int translationIndex) asy
 
   Future<List<Qari>> getQariList() async {
     List<Qari> qariList = [];
-    final url = "https://quranicaudio.com/api/qaris";
+    const url = "https://quranicaudio.com/api/qaris";
 
     try {
       // Add any required headers here
@@ -93,16 +93,16 @@ Future<SurahTranslationList> getTranslation(int index, int translationIndex) asy
 
       if (response.statusCode == 200) {
         List<dynamic> data = jsonDecode(response.body);
-        data.forEach((element) {
+        for (var element in data) {
           qariList.add(Qari.fromjson(element));
-        });
+        }
         return qariList;
       } else {
         throw Exception('Failed to load Qari list. Status Code: ${response.statusCode}');
       }
     } catch (e) {
       print('Error fetching Qari list: $e');
-      throw e; // Propagate the error
+      rethrow; // Propagate the error
     }
   }
 

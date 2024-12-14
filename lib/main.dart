@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fyp_pro/publicdashboard/utility/utilitys.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Authentication/SignIn.dart';
@@ -46,18 +47,18 @@ class MyApp extends StatelessWidget {
     if (isLoggedIn) {
       // Navigate to the dashboard based on the user's role
       if (userRole == 'Alim') {
-        return AlimDashboardMain();  // Alim dashboard screen
+        return const AlimDashboardMain();  // Alim dashboard screen
       } else if (userRole == 'Public') {
-        return Navigati();       // Public dashboard screen
+        return const Navigati();       // Public dashboard screen
       } else if (userRole == 'Admin') {
-        return AdminDashboard(); // Admin dashboard screen
+        return const AdminDashboard(); // Admin dashboard screen
       } else {
         // If the role is unknown, show the sign-in screen again
-        return Signin();
+        return const Signin();
       }
     } else {
       // If not logged in, show the sign-in screen
-      return Signin();
+      return const Signin();
     }
   }
 }

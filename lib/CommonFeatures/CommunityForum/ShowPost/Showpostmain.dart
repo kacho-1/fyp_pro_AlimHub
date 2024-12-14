@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/CommonFeatures/CommunityForum/ShowPost/Wigets/postitem.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../Customs/CustomColor.dart';
 import '../../Profile/Controller/Profilecontroller.dart';
 import 'Controller/Showpostcontroller.dart';
@@ -14,10 +13,10 @@ class ShowPostMain extends StatelessWidget {
   final _showpostController = Get.put(ShowPostController());
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('AlimHub Community',
+        title: const Text('AlimHub Community',
         style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: TColors.primary,
         centerTitle: true,
@@ -38,7 +37,7 @@ class ShowPostMain extends StatelessWidget {
             );
           }
           else {
-             return Center( child: CircularProgressIndicator(),);
+             return const Center( child: CircularProgressIndicator(),);
 
           }
         },

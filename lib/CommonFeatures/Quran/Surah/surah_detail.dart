@@ -10,7 +10,7 @@ import '../Models/translationModel.dart';
 enum Translation {urdu,hindi,english,turkish,persian,german}
 
 class Surahdetail extends StatefulWidget {
-  const Surahdetail({Key? key}) : super(key: key);
+  const Surahdetail({super.key});
 
   static const String id = 'surahDetail_screen';
   @override
@@ -26,11 +26,11 @@ class _SurahdetailState extends State<Surahdetail> {
     return  SafeArea(
       child: Scaffold(
         body: FutureBuilder(
-            future: apiServices.getTranslation(Constants.surahIndex!,translation!.index),
+            future: apiServices.getTranslation(Constants.surahIndex!,translation.index),
             builder: (BuildContext context,
             AsyncSnapshot<SurahTranslationList>snapshot){
               if(snapshot.connectionState == ConnectionState.waiting){
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
@@ -46,7 +46,7 @@ class _SurahdetailState extends State<Surahdetail> {
                   }),
                 );
               }
-              else return Center(
+              else return const Center(
                   child: Text("Translation Not Found") ,
                 );
             },
@@ -56,7 +56,7 @@ class _SurahdetailState extends State<Surahdetail> {
             headerBar: Container(
               color: TColors.primary,
               height: 50,
-              child: Center(
+              child: const Center(
                 child: Text("Swipe me!",
                 style: TextStyle(
                   color: Colors.white
@@ -71,7 +71,7 @@ class _SurahdetailState extends State<Surahdetail> {
                   child:Column(
                     children: <Widget>[
                       ListTile(
-                        title: Text('Urdu'),
+                        title: const Text('Urdu'),
                         leading: Radio<Translation>(
                           value: Translation.urdu,
                           groupValue: translation,
@@ -83,7 +83,7 @@ class _SurahdetailState extends State<Surahdetail> {
                         ),
                       ),
                       ListTile(
-                        title: Text('Hindi'),
+                        title: const Text('Hindi'),
                         leading: Radio<Translation>(
                           value: Translation.hindi,
                           groupValue: translation,
@@ -95,7 +95,7 @@ class _SurahdetailState extends State<Surahdetail> {
                         ),
                       ),
                       ListTile(
-                        title: Text('English'),
+                        title: const Text('English'),
                         leading: Radio<Translation>(
                           value: Translation.english,
                           groupValue: translation,
@@ -107,7 +107,7 @@ class _SurahdetailState extends State<Surahdetail> {
                         ),
                       ),
                       ListTile(
-                        title: Text('Turkish'),
+                        title: const Text('Turkish'),
                         leading: Radio<Translation>(
                           value: Translation.turkish,
                           groupValue: translation,
@@ -119,7 +119,7 @@ class _SurahdetailState extends State<Surahdetail> {
                         ),
                       ),
                       ListTile(
-                        title: Text('Persian'),
+                        title: const Text('Persian'),
                         leading: Radio<Translation>(
                           value: Translation.persian,
                           groupValue: translation,
@@ -131,7 +131,7 @@ class _SurahdetailState extends State<Surahdetail> {
                         ),
                       ),
                       ListTile(
-                        title: Text('German'),
+                        title: const Text('German'),
                         leading: Radio<Translation>(
                           value: Translation.german,
                           groupValue: translation,

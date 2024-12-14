@@ -24,7 +24,7 @@ class _QiblahCompassState extends State<QiblahCompass> {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // Location services are not enabled, add an error to the stream
-      locationStreamController.sink.add(LocationStatus(false, LocationPermission.denied));
+      locationStreamController.sink.add(const LocationStatus(false, LocationPermission.denied));
       return;
     }
 
@@ -62,7 +62,7 @@ class _QiblahCompassState extends State<QiblahCompass> {
       stream: stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (snapshot.hasError) {
@@ -118,7 +118,7 @@ class QiblahCompassWidget extends StatelessWidget {
         stream: FlutterQiblah.qiblahStream,
         builder: (_,AsyncSnapshot<QiblahDirection>snapshot){
           if(snapshot.connectionState==ConnectionState.waiting){
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

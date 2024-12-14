@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class AlimDetailScreen extends StatefulWidget {
   final String alimUid;
 
-  const AlimDetailScreen({Key? key, required this.alimUid}) : super(key: key);
+  const AlimDetailScreen({super.key, required this.alimUid});
 
   @override
   State<AlimDetailScreen> createState() => _AlimDetailScreenState();
@@ -47,7 +47,7 @@ class _AlimDetailScreenState extends State<AlimDetailScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Alim Detail',
           style: TextStyle(
             fontSize: 18,
@@ -59,12 +59,12 @@ class _AlimDetailScreenState extends State<AlimDetailScreen> {
         child: SafeArea(
           child: Obx(() {
             if (alimData.isEmpty) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
 
             return Column(
               children: <Widget>[
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 AboutAlim(
                   alimName: alimData['alimname'],
                   alimImage: alimData['alimimage'],
@@ -74,10 +74,10 @@ class _AlimDetailScreenState extends State<AlimDetailScreen> {
                   aboutAlim: alimData['about'],
                   alimExperience: alimData['experience'],
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -90,9 +90,9 @@ class _AlimDetailScreenState extends State<AlimDetailScreen> {
                       style: ElevatedButton.styleFrom(
                         elevation: 5,
                         backgroundColor: TColors.primary,
-                        minimumSize: Size(200, 50),
+                        minimumSize: const Size(200, 50),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Book Appointment',
                         style: TextStyle(
                           fontSize: 15,

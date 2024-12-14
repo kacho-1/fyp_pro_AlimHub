@@ -9,6 +9,8 @@ class JuzScreen extends StatelessWidget {
   //const JuzScreen({super.key});
   static const String id ='juz_screen';
 ApiServices apiServices =ApiServices();
+
+  JuzScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,7 +19,7 @@ ApiServices apiServices =ApiServices();
               future:apiServices.getJuzz(Constants.juzIndex!) ,
               builder: (context, AsyncSnapshot<JuzModel> snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting){
-                  return Center(child: CircularProgressIndicator(),);
+                  return const Center(child: CircularProgressIndicator(),);
 
                 }
                 else if (snapshot.hasData){
@@ -30,7 +32,7 @@ ApiServices apiServices =ApiServices();
                   );
                 }
                 else {
-                  return Center(child: Text('Data donot found'),);
+                  return const Center(child: Text('Data donot found'),);
                 }
               }
           ),

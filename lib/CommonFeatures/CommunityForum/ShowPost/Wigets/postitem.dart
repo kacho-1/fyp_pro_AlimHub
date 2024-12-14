@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fyp_pro/CommonFeatures/Profile/Controller/Profilecontroller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
@@ -10,9 +9,9 @@ import 'comment_widget.dart';
 import 'like_widget.dart';
 class PostItem extends StatelessWidget {
   PostItem({
-    Key? key,
+    super.key,
     required this.post,
-  }) : super(key: key);
+  });
 
   final Post post;
   // GetX dependenc_homeControllery injection

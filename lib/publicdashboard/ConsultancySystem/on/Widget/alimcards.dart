@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../CommonFeatures/Customs/CustomColor.dart';
 
 class AlimCards extends StatelessWidget {
-   AlimCards({Key? key, required this.label, required this.value}) : super(key: key);
+   const AlimCards({super.key, required this.label, required this.value});
    final String label;
    final String value;
   @override
@@ -15,7 +15,7 @@ class AlimCards extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           color: TColors.primary,
         ),
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: 30,
           horizontal: 15,
 
@@ -24,19 +24,19 @@ class AlimCards extends StatelessWidget {
           children: <Widget>[
             Text(
               label,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
 
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               value,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 15,
                 fontWeight: FontWeight.w800,

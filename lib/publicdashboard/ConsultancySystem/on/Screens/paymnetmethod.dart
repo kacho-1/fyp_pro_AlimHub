@@ -26,13 +26,13 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Method',
+        title: const Text('Payment Method',
         style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
 
         ),),
-        leading: BackButton(),
+        leading: const BackButton(),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -40,15 +40,15 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
       ),
       backgroundColor: Colors.white,
       body: SafeArea(child: Padding(
-          padding:EdgeInsets.all(20),
+          padding:const EdgeInsets.all(20),
       child: Center(
         child: Column(
           children: [
-            SizedBox(height: 40,),
+            const SizedBox(height: 40,),
             Container(
               width: size.width,
               height: 55,
-              margin: EdgeInsets.only(right: 20),
+              margin: const EdgeInsets.only(right: 20),
               decoration: BoxDecoration(
                 border: type == 1
                         ? Border.all(width: 1,color: TColors.primary)
@@ -74,12 +74,12 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                           ),
                           Text('Card Pay',
                           style: type == 1
-                                 ? TextStyle(
+                                 ? const TextStyle(
                                    fontSize: 15,
                                    fontWeight: FontWeight.w500,
                                     color: Colors.black,
                           )
-                                  : TextStyle(
+                                  : const TextStyle(
                                      fontWeight: FontWeight.w500,
                                      fontSize: 15,
                                      color: Colors.grey,
@@ -101,11 +101,11 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             Container(
               width: size.width,
               height: 55,
-              margin: EdgeInsets.only(right: 20),
+              margin: const EdgeInsets.only(right: 20),
               decoration: BoxDecoration(
                 border: type == 2
                     ? Border.all(width: 1,color: TColors.primary)
@@ -131,12 +131,12 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                           ),
                           Text('Easypaisa ',
                               style: type == 2
-                                  ? TextStyle(
+                                  ? const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black,
                               )
-                                  : TextStyle(
+                                  : const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
                                 color: Colors.grey,
@@ -158,11 +158,11 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             Container(
               width: size.width,
               height: 55,
-              margin: EdgeInsets.only(right: 20),
+              margin: const EdgeInsets.only(right: 20),
               decoration: BoxDecoration(
                 border: type == 3
                     ? Border.all(width: 1,color: TColors.primary)
@@ -188,12 +188,12 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                           ),
                           Text('Jazz Cash',
                               style: type == 3
-                                  ? TextStyle(
+                                  ? const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black,
                               )
-                                  : TextStyle(
+                                  : const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
                                 color: Colors.grey,
@@ -215,10 +215,10 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Sub-Total',
@@ -227,16 +227,16 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                   fontWeight: FontWeight.w400,
                   color: Colors.grey,
                 ),),
-                Text('\RS: 1000',style: TextStyle(
+                Text('RS: 1000',style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 15,
                 ),)
 
               ],
             ),
-            SizedBox(height: 40,),
+            const SizedBox(height: 40,),
             Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: ElevatedButton(
 
                     onPressed: (){
@@ -244,19 +244,19 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                         // Navigate to Card Pay screen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CardPaymentPage()),
+                          MaterialPageRoute(builder: (context) => const CardPaymentPage()),
                         );
                       } else if (type == 2) {
                         // Navigate to Easypaisa screen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => EasyPaisaPaymentPage()),
+                          MaterialPageRoute(builder: (context) => const EasyPaisaPaymentPage()),
                         );
                       } else if (type == 3) {
                         // Navigate to JazzCash screen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => JazzCashPaymentPage()),
+                          MaterialPageRoute(builder: (context) => const JazzCashPaymentPage()),
                         );
                       }
 
@@ -264,10 +264,10 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                     style: ElevatedButton.styleFrom(
                       elevation: 5,
                       backgroundColor: TColors.primary,
-                      minimumSize: Size (200,50),
+                      minimumSize: const Size (200,50),
 
                     ),
-                    child: Text('Proceed to Pay',
+                    child: const Text('Proceed to Pay',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,

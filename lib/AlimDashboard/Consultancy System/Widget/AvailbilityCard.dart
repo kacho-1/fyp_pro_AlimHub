@@ -8,7 +8,7 @@ class AvailabilityCard extends StatelessWidget {
   final DateTime date;
   final AlimAvailabilityController controller;
 
-  const AvailabilityCard({
+  const AvailabilityCard({super.key, 
     required this.date,
     required this.controller, required List<Map<String, dynamic>> timeSlots,
   });
@@ -18,7 +18,7 @@ class AvailabilityCard extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0), // Rounded corners
-        side: BorderSide(
+        side: const BorderSide(
           color: TColors.primary, // Border color
           width: 2.0, // Border width
         ),
@@ -33,9 +33,9 @@ class AvailabilityCard extends StatelessWidget {
             // Display selected date
             Text(
               'Date: ${DateFormat('yyyy-MM-dd').format(date)} (${DateFormat('EEEE').format(date)})',
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             // Display available time slots
             Obx(() {
               final slots = controller.timeSlots[date] ?? [];
@@ -52,7 +52,7 @@ class AvailabilityCard extends StatelessWidget {
                         child: ListTile(
                           title: Text(
                             '${slot['startTime']} - ${slot['endTime']}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -62,12 +62,12 @@ class AvailabilityCard extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               IconButton(
-                                icon: Icon(Icons.edit_outlined, color: Colors.white),
+                                icon: const Icon(Icons.edit_outlined, color: Colors.white),
                                 onPressed: () =>
                                     _showEditSlotDialog(context, date, slot),
                               ),
                               IconButton(
-                                icon: Icon(Icons.delete, color: Colors.red),
+                                icon: const Icon(Icons.delete, color: Colors.red),
                                 onPressed: () =>
                                     controller.deleteSlot(date, slot['startTime'])
                               ),
@@ -75,13 +75,13 @@ class AvailabilityCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                     ],
                   );
                 }).toList(),
               );
             }),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             // Add time slot button
             Center(
               child: ElevatedButton(
@@ -89,9 +89,9 @@ class AvailabilityCard extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   elevation: 5,
                   backgroundColor: TColors.primary,
-                  minimumSize: Size(140, 50),
+                  minimumSize: const Size(140, 50),
                 ),
-                child: Text(
+                child: const Text(
                   'Add Time Slot',
                   style: TextStyle(
                     fontSize: 15,
@@ -116,22 +116,22 @@ class AvailabilityCard extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Add Time Slot'),
+          title: const Text('Add Time Slot'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: startTimeController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Start Time (HH:mm)',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.datetime,
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               TextField(
                 controller: endTimeController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'End Time (HH:mm)',
                   border: OutlineInputBorder(),
                 ),
@@ -143,7 +143,7 @@ class AvailabilityCard extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(context),
-              child: Text(
+              child: const Text(
                 'Cancel',
                 style: TextStyle(
                   fontSize: 15,
@@ -164,7 +164,7 @@ class AvailabilityCard extends StatelessWidget {
                   Get.snackbar('Error', 'Please fill in all fields.');
                 }
               },
-              child: Text(
+              child: const Text(
                 'Add',
                 style: TextStyle(
                   fontSize: 15,
@@ -190,19 +190,19 @@ class AvailabilityCard extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Edit Time Slot'),
+          title: const Text('Edit Time Slot'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: startTimeController,
-                decoration: InputDecoration(labelText: 'Start Time (HH:mm)', border: OutlineInputBorder()),
+                decoration: const InputDecoration(labelText: 'Start Time (HH:mm)', border: OutlineInputBorder()),
                 keyboardType: TextInputType.datetime,
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               TextField(
                 controller: endTimeController,
-                decoration: InputDecoration(labelText: 'End Time (HH:mm)', border: OutlineInputBorder()),
+                decoration: const InputDecoration(labelText: 'End Time (HH:mm)', border: OutlineInputBorder()),
                 keyboardType: TextInputType.datetime,
               ),
             ],
@@ -211,7 +211,7 @@ class AvailabilityCard extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(context),
-              child: Text('Cancel', style: TextStyle(color: Colors.white)),
+              child: const Text('Cancel', style: TextStyle(color: Colors.white)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: TColors.primary),
@@ -226,7 +226,7 @@ class AvailabilityCard extends StatelessWidget {
                   Get.snackbar('Error', 'Please fill in all fields.');
                 }
               },
-              child: Text('Save', style: TextStyle(color: Colors.white)),
+              child: const Text('Save', style: TextStyle(color: Colors.white)),
             ),
           ],
         );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Widget/alimcards.dart';
 
-import '../../../../CommonFeatures/Customs/CustomColor.dart';
 
 class AlimInfo extends StatelessWidget {
   final alimexperience;
@@ -11,15 +10,15 @@ class AlimInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        AlimCards(
+        const AlimCards(
             label: 'Seekers' ,
             value: '55'),
-        SizedBox(width: 15,),
+        const SizedBox(width: 15,),
         AlimCards(
             label: 'Experences' ,
-            value: ' ${alimexperience} years'),
-        SizedBox(width: 15,),
-        AlimCards(
+            value: ' $alimexperience years'),
+        const SizedBox(width: 15,),
+        const AlimCards(
             label: 'Rating' ,
             value: '4.8'),
 

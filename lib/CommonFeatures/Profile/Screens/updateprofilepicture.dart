@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
-import '../../Customs/CustomColor.dart';
 import '../Controller/UpdateProfilePictureController.dart';
 
 class ChangeProfilePictureScreen extends StatelessWidget {
@@ -13,11 +11,13 @@ class ChangeProfilePictureScreen extends StatelessWidget {
   // For selecting an image
   final ImagePicker _picker = ImagePicker();
 
+  ChangeProfilePictureScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update Profile Picture'),
+        title: const Text('Update Profile Picture'),
       ),
       body: Center(
         child: Padding(
@@ -43,10 +43,10 @@ class ChangeProfilePictureScreen extends StatelessWidget {
                     : CircleAvatar(
                   radius: 60,
                   backgroundColor: Colors.grey[300],
-                  child: Icon(Icons.person, size: 60, color: Colors.white),
+                  child: const Icon(Icons.person, size: 60, color: Colors.white),
                 );
               }),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Button to pick a new image
               ElevatedButton(
@@ -57,9 +57,9 @@ class ChangeProfilePictureScreen extends StatelessWidget {
                     controller.profileController.selectedImagePath.value = pickedFile.path;
                   }
                 },
-                child: Text('Choose New Profile Picture'),
+                child: const Text('Choose New Profile Picture'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Button to update the profile picture
               ElevatedButton(
@@ -83,9 +83,9 @@ class ChangeProfilePictureScreen extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white70,
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 ),
-                child: Text('Update Profile Picture'),
+                child: const Text('Update Profile Picture'),
               ),
             ],
           ),

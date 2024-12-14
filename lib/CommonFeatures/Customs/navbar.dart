@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 
 
 class Navigati extends StatelessWidget{
+  const Navigati({super.key});
+
   @override
   Widget build(BuildContext context) {
     final controller =Get.put(NavigationController());
@@ -34,6 +36,6 @@ class Navigati extends StatelessWidget{
 
 class NavigationController extends GetxController{
 final Rx<int> selectedIndex = 0.obs;
-final screens = [HomeScreen(),CatagoryScreen(),SettingScreen()];
+final screens = [const HomeScreen(),const CatagoryScreen(),const SettingScreen()];
 }
 

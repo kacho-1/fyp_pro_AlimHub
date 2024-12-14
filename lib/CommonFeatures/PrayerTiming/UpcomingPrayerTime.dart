@@ -1,13 +1,12 @@
 import 'package:adhan/adhan.dart';
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 
 class PrayerUtils {
   static Future<String> getUpcomingPrayer(Location location) async {
-    LocationData? _currentPosition = await location.getLocation();
-    double? latitude = _currentPosition.latitude;
-    double? longitude = _currentPosition.longitude;
+    LocationData? currentPosition = await location.getLocation();
+    double? latitude = currentPosition.latitude;
+    double? longitude = currentPosition.longitude;
 
     if (latitude != null && longitude != null) {
       final myCoordinates = Coordinates(latitude, longitude);

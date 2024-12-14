@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fyp_pro/Authentication/SignIn.dart';
-import 'package:fyp_pro/Authentication/SignUp.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
 import '../Controller/Profilecontroller.dart';
-
 class DeleteAccountAuthScreen extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -18,7 +15,7 @@ class DeleteAccountAuthScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  DeleteAccountAuthScreen({Key? key}) : super(key: key);
+  DeleteAccountAuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +115,7 @@ class DeleteAccountAuthScreen extends StatelessWidget {
 
       // Sign out user and navigate to Sign-In page
       await _auth.signOut();
-      Get.offAll(() => Signin()); // Replace with your sign-in page widget
+      Get.offAll(() => const Signin()); // Replace with your sign-in page widget
     } catch (e) {
       Get.snackbar('Error', 'An error occurred: ${e.toString()}');
     }

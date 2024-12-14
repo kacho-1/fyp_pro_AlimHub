@@ -3,7 +3,7 @@ import '../Customs/CustomColor.dart';
 
 class Constants{
   static const kPrimary = TColors.primary;
-  static const MaterialColor KSwatchColor = const MaterialColor(
+  static const MaterialColor KSwatchColor = MaterialColor(
     0xFF42A5F5, // Base color
     <int, Color>{
       50: Color(0xFFE3F2FD),

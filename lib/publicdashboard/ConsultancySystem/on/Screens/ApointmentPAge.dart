@@ -1,73 +1,99 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Chat/Screens/publicConnection.dart';
+import 'package:get/get.dart';
 import 'package:fyp_pro/CommonFeatures/Customs/CustomColor.dart';
-import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/utility/config.dart';
-
+import '../Controller/showappoinmentcontroller.dart';
 import '../Widget/ScheduleCard.dart';
+import 'package:intl/intl.dart'; // For time formatting
 
-class ApointmentPage extends StatefulWidget {
-  const ApointmentPage({super.key});
+class AppointmentPage extends StatefulWidget {
+  const AppointmentPage({super.key});
 
   @override
-  State<ApointmentPage> createState() => _ApointmentPageState();
+  State<AppointmentPage> createState() => _AppointmentPageState();
 }
-enum FilterStatus {upcoming,completed,cancel}
-class _ApointmentPageState extends State<ApointmentPage> {
+
+enum FilterStatus { upcoming, completed }
+
+class _AppointmentPageState extends State<AppointmentPage> {
+  final AppointmentController _controller = Get.put(AppointmentController());
   FilterStatus status = FilterStatus.upcoming;
   Alignment _alignment = Alignment.centerLeft;
-  List<dynamic> schedules = [
-    {
-      'alim_name':'Molana Tariq Jameel',
-      'alim_profile':'assets/images/alims/alim1.jpeg',
-      'status':FilterStatus.upcoming,
-    },
-    {
-      'alim_name':'Molana Asim Ali',
-      'alim_profile':'assets/images/alims/alim2.jpeg',
-      'status':FilterStatus.upcoming,
-    },
-    {
-      'alim_name':'Molana Ahsan Hussain',
-      'alim_profile':'assets/images/alims/alim3.jpeg',
-      'status':FilterStatus.completed,
-    },
-    {
-      'alim_name':'Enggineer Mirza Ali ',
-      'alim_profile':'assets/images/alims/alim4.jpeg',
-      'status':FilterStatus.cancel,
-    },
-  ];
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch data for the current user
+    _controller.fetchAppointments();
+  }
+
+  // Check if the current time is within the consultancy's time range
+  bool isWithinTimeRange(String date, String timeSlot) {
+    final now = DateTime.now();
+    final timeParts = timeSlot.split('-'); // e.g., "13:00-13:30"
+
+    if (timeParts.length == 2) {
+      try {
+        final startTimeString = timeParts[0].trim();
+        final endTimeString = timeParts[1].trim();
+
+        // Ensure that the time strings are in "HH:mm" format
+        final startTime = DateFormat("HH:mm").parse(startTimeString);
+        final endTime = DateFormat("HH:mm").parse(endTimeString);
+
+        // Parse the date from the Firebase data
+        final appointmentDate = DateFormat("yyyy-MM-dd").parse(date);
+
+        // Combine the date with the start and end time
+        final startDateTime = DateTime(
+          appointmentDate.year,
+          appointmentDate.month,
+          appointmentDate.day,
+          startTime.hour,
+          startTime.minute,
+        );
+        final endDateTime = DateTime(
+          appointmentDate.year,
+          appointmentDate.month,
+          appointmentDate.day,
+          endTime.hour,
+          endTime.minute,
+        );
+
+        // Log for debugging
+        print("Current Time: $now");
+        print("Appointment Start: $startDateTime");
+        print("Appointment End: $endDateTime");
+
+        // Compare the current time with the appointment's start and end time
+        return now.isAfter(startDateTime) && now.isBefore(endDateTime);
+      } catch (e) {
+        print("Error parsing time: $e");
+      }
+    }
+    return false;
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
-    List<dynamic> filteredSchedules = schedules.where((var schedule){
-     /* switch (schedule['status']){
-        case 'upcoming':
-          schedule['status'] = FilterStatus.upcoming;
-          break;
-        case 'complete':
-          schedule['status'] = FilterStatus.completed;
-          break;
-        case 'cancel':
-          schedule['status'] = FilterStatus.cancel;
-          break;
-      }*/
-      return schedule['status'] == status;
-    }
-    ).toList();
     return SafeArea(
-        child: Padding(
-            padding: EdgeInsets.only(left: 20,top: 20,right: 20)
-        ,child: Column(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children:<Widget> [
-            Text('Apointment Schedule',
+          children: <Widget>[
+            const Text(
+              'Appointment Schedule',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-
               ),
               textAlign: TextAlign.center,
-                ),
-            Config.spaceSmall,
+            ),
+            const SizedBox(height: 10),
             Stack(
               children: [
                 Container(
@@ -76,163 +102,153 @@ class _ApointmentPageState extends State<ApointmentPage> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
-
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      for (FilterStatus filterstatus in FilterStatus.values)
-                        Expanded(child: GestureDetector(
-                          onTap: (){
+                    children: FilterStatus.values.map((filterStatus) {
+                      return Expanded(
+                        child: GestureDetector(
+                          onTap: () {
                             setState(() {
-                              if(filterstatus == FilterStatus.upcoming)
-                                {
-                                  status = FilterStatus.upcoming;
-                                  _alignment = Alignment.centerLeft;
-                                }
-                               else if (filterstatus == FilterStatus.completed)
-                                 {
-
-                                     status = FilterStatus.completed;
-                                     _alignment = Alignment.center;
-
-                                 }
-                               else if (filterstatus == FilterStatus.cancel)
-                              {
-                                status = FilterStatus.cancel;
-                                _alignment = Alignment.centerRight;
-                              }
+                              status = filterStatus;
+                              _alignment = filterStatus == FilterStatus.upcoming
+                                  ? Alignment.centerLeft
+                                  : Alignment.centerRight;
                             });
                           },
                           child: Center(
-                            child: Text(filterstatus.name),
+                            child: Text(filterStatus.name),
                           ),
-                        ))
-                    ],
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
                 AnimatedAlign(
-                    alignment:_alignment ,
-                    duration: Duration(milliseconds: 200),
-                    child: Container(
-                      width: 100,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: TColors.primary,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                        child: Text(
-                          status.name,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  alignment: _alignment,
+                  duration: const Duration(milliseconds: 200),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: TColors.primary,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: Text(
+                        status.name,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
+                  ),
                 ),
               ],
             ),
-            Config.spaceSmall,
+            const SizedBox(height: 10),
             Expanded(
-                child: ListView.builder(
-                    itemCount: filteredSchedules.length,
-                    itemBuilder:((context,index){
-                      var _schedule = filteredSchedules[index];
-                      bool isLastElement = filteredSchedules.length + 1 == index;
-                      return Card(
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Colors.grey,
+              child: Obx(() {
+                final appointments = status == FilterStatus.upcoming
+                    ? _controller.upcomingAppointments
+                    : _controller.completedAppointments;
 
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        margin: !isLastElement
-                                  ? EdgeInsets.only(bottom: 20,)
-                                  : EdgeInsets.zero,
-                        child: Padding(
-                            padding:EdgeInsets.all(15),
+                return ListView.builder(
+                  itemCount: appointments.length,
+                  itemBuilder: (context, index) {
+                    final appointment = appointments[index];
+                    final isWithinTime = isWithinTimeRange(appointment['date'], appointment['timeSlot']);
+
+
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Row(
                               children: [
                                 CircleAvatar(
-                                  backgroundImage: AssetImage(_schedule['alim_profile']),
+                                  backgroundImage: NetworkImage(
+                                    appointment['alim_profile'],
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: 10,
-                                ),
+                                const SizedBox(width: 10),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      _schedule['alim_name'],
-                                      style: TextStyle(
+                                      appointment['alim_name'],
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
+                                    Text(
+                                      appointment['type'],
+                                      style: const TextStyle(color: Colors.grey),
+                                    ),
                                   ],
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            SheduleCard(),
-                            SizedBox(height: 15,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                    child: OutlinedButton(
-                                        onPressed: (){},
-                                        child:Text(
-                                          'Cancel'
-                                              ,
-                                          style: TextStyle(
-                                            color: Colors.white
-                                          ),
-                                        ),
-                                    style: OutlinedButton.styleFrom(
-                                      backgroundColor: Colors.red
-                                    )
-                                    ),),
-                                SizedBox(
-                                  width: 20,
                                 ),
-
-                                Expanded(
-                                  child: OutlinedButton(
-                                      onPressed: (){},
-                                      child:Text(
-                                        'Reshedule'
-                                        ,
-                                        style: TextStyle(
-                                            color: Colors.white
-                                        ),
-                                      ),
-                                      style: OutlinedButton.styleFrom(
-                                          backgroundColor: Colors.blue
-                                      )
-                                  ),),
-
                               ],
-                            )
-                          ],
-                        ),),
+                            ),
+                            const SizedBox(height: 15),
+                            ScheduleCard(
+                              date: appointment['date'],
+                              timeSlot: appointment['timeSlot'],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                if (appointment['type'] == 'Text-Based')
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.chat,
+                                      color: isWithinTime ? Colors.blue : Colors.grey,
+                                    ),
+                                    onPressed: isWithinTime
+                                        ? () {
+                                      // Handle text-based consultancy
+                                     /*Navigator.push(context,
+                                         MaterialPageRoute(builder: (context)=>UserConnectionScreen(appointment: appointment['alimId'])));*/
+                                    }
+                                        : null,
+                                  ),
+                                if (appointment['type'] == 'Video-call')
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.videocam,
+                                      color: isWithinTime ? Colors.green : Colors.grey,
+                                    ),
+                                    onPressed: isWithinTime
+                                        ? () {
+                                      // Handle video call consultancy
+                                      /*Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context)=>VideoCallPage(callID: appointment['videoRoomId'])));*/
+                                            }
 
-                      );
-                    })
-                )
+                                        : null,
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }),
             ),
           ],
-
-        ),),
+        ),
+      ),
     );
-
   }
 }

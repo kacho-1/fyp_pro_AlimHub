@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TSectionsetting extends StatelessWidget {
-   TSectionsetting({
+   const TSectionsetting({
     super.key,
     this.onPressed,
     this.textColor,

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../Models/SurahModel.dart';
@@ -12,8 +11,8 @@ Widget SurahCustomListile({
  return GestureDetector(
    onTap: ontap,
    child: Container(
-     padding: EdgeInsets.all(16),
-     decoration: BoxDecoration(
+     padding: const EdgeInsets.all(16),
+     decoration: const BoxDecoration(
       color: Colors.white,
        boxShadow: [
          BoxShadow(
@@ -31,23 +30,23 @@ Widget SurahCustomListile({
                  alignment: Alignment.center,
                  height: 40,
                  width: 50,
-                 padding: EdgeInsets.all(8),
-                 decoration: BoxDecoration(
+                 padding: const EdgeInsets.all(8),
+                 decoration: const BoxDecoration(
                    shape: BoxShape.circle,
                    color:  Colors.black,
 
                  ),
                  child: Text((surah.number).toString(),
-                 style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.bold),
+                 style: const TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.bold),
                )
 
               ),
-               SizedBox(width: 20,),
+               const SizedBox(width: 20,),
                Expanded(
                  child: Column(
                    children: [
                      Text(surah.englishName!,
-                       style:TextStyle(
+                       style:const TextStyle(
                          fontWeight: FontWeight.bold,
 
                        )
@@ -60,10 +59,10 @@ Widget SurahCustomListile({
                    ],
                  ),
                ),
-               Spacer(),
+               const Spacer(),
                Expanded(
                  child: Text(surah.name!,
-                   style: TextStyle(
+                   style: const TextStyle(
                      color: Colors.black54,
                      fontWeight: FontWeight.bold,fontSize: 20
                    ), maxLines: 2, // Limit the number of lines

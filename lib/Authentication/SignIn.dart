@@ -105,7 +105,7 @@ class _SigninState extends State<Signin> {
       } catch (e) {
         // Handle other errors
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
               content: Text('An unexpected error occurred. Please try again.')),
         );
       }
@@ -165,7 +165,7 @@ class _SigninState extends State<Signin> {
       if (alimSnapshot.exists) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => AlimDashboardMain()),
+          MaterialPageRoute(builder: (context) => const AlimDashboardMain()),
         );
         return; // Exit after navigation
       }
@@ -177,7 +177,7 @@ class _SigninState extends State<Signin> {
       if (publicSnapshot.exists) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Navigati()),
+          MaterialPageRoute(builder: (context) => const Navigati()),
         );
         return; // Exit after navigation
       }
@@ -189,7 +189,7 @@ class _SigninState extends State<Signin> {
       if (adminSnapshot.exists) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => AdminDashboard()),
+          MaterialPageRoute(builder: (context) => const AdminDashboard()),
         );
         return; // Exit after navigation
       }
@@ -214,7 +214,7 @@ class _SigninState extends State<Signin> {
     return Scaffold(
       //backgroundColor: Colors.green.shade800,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/bg.jfif'),
             fit: BoxFit.cover, // Adjust the image to cover the entire screen
@@ -230,7 +230,7 @@ class _SigninState extends State<Signin> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 190,
                         height: 170,
                         child: Padding(
@@ -324,9 +324,9 @@ class _SigninState extends State<Signin> {
                               onTap: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) =>
-                                    forgetpassword()));
+                                    const forgetpassword()));
                               },
-                              child: Text("Forget Password?"))),
+                              child: const Text("Forget Password?"))),
                       SizedBox(height: screenHeight * 0.10),
 
                       GestureDetector(
@@ -378,7 +378,7 @@ class _SigninState extends State<Signin> {
                             ),
                             onPressed: () {
                               Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (_) => Signup()));
+                                  MaterialPageRoute(builder: (_) => const Signup()));
                             },
                             child: RichText(
                               text: const TextSpan(

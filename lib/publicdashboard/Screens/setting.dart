@@ -4,26 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:fyp_pro/Authentication/SignIn.dart';
 import 'package:fyp_pro/CommonFeatures/Profile/profilescreen.dart';
 import 'package:fyp_pro/publicdashboard/setting/screens/FAQ.dart';
+import 'package:fyp_pro/publicdashboard/setting/screens/feedbackScreen.dart';
 import 'package:fyp_pro/publicdashboard/setting/screens/location.dart';
 import 'package:fyp_pro/publicdashboard/setting/screens/privatepolicy.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../CommonFeatures/Customs/CustomAppbar.dart';
 import '../../CommonFeatures/Customs/CustomContainier.dart';
 import '../../CommonFeatures/Customs/CustomSettingboarding.dart';
 import '../../CommonFeatures/Customs/customSettingsection.dart';
 import '../../CommonFeatures/Profile/Controller/Profilecontroller.dart';
-import '../ConsultancySystem/on/Screens/ApointmentPAge.dart';
-import '../ConsultancySystem/on/paymentmethods/Card/Screens/cardmainscreen.dart';
 import '../setting/screens/bankaccountscreen.dart';
 
 
 
+
 class SettingScreen extends StatefulWidget {
-   SettingScreen({super.key});
+   const SettingScreen({super.key});
 
 
   @override
@@ -39,7 +37,7 @@ class _SettingScreenState extends State<SettingScreen> {
     // Navigate to the Signin screen after logout
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => Signin()),
+      MaterialPageRoute(builder: (context) => const Signin()),
           (Route<dynamic> route) => false,  // Remove all routes from the stack
     );
   }
@@ -60,7 +58,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white),),
 
                   ),
-                  SizedBox(height: 32,),
+                  const SizedBox(height: 32,),
                   ListTile(
                     leading: ClipOval(
                       child: Obx(()=>CachedNetworkImage(
@@ -80,33 +78,23 @@ class _SettingScreenState extends State<SettingScreen> {
                       style: Theme.of(context).textTheme.bodyMedium!.apply(color:Colors.grey.shade300),),
                     trailing :IconButton(onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
-                    }, icon: Icon(Iconsax.edit,color: Colors.white,)),
+                    }, icon: const Icon(Iconsax.edit,color: Colors.white,)),
                   )
                 ],
               )
             ),
-            Padding(padding: EdgeInsets.all(24),
+            Padding(padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                TSectionsetting(title: 'Account Setting',showActionButton: false,),
-                SizedBox(height: 16,),
-                TSettingBody(
-                  icon: Icons.add,
-                  title: 'My Appointment',
-                  subtitle: 'Alim apointments',
-                  traling: null,
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ApointmentPage()));
-                  },
-                ),
-
+                const TSectionsetting(title: 'Account Setting',showActionButton: false,),
+                const SizedBox(height: 16,),
                 TSettingBody(
                   icon: Iconsax.bank,
                   title: 'Bank Account',
                   subtitle: 'Add Account Details',
                   traling: null,
                   onTap: (){
-                    //Navigator.push(context, MaterialPageRoute(builder: (context)=> BankAccount()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const BankAccount()));
                   },
                 ),
                 TSettingBody(
@@ -122,20 +110,20 @@ class _SettingScreenState extends State<SettingScreen> {
                   subtitle: 'Managed Data usage and connected accounts ',
                   traling: null,
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> PrivacyPolicyPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const PrivacyPolicyPage()));
                   },
                 ),
-                SizedBox(height: 16,),
+                const SizedBox(height: 16,),
                 TSettingBody(
                   icon: Icons.location_on_outlined,
                   title: 'Location',
                   subtitle: 'Set the location',
                   traling: null,
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> LocationScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const LocationScreen()));
                   },
                 ),
-                SizedBox(height:
+                const SizedBox(height:
                   16,),
                 TSettingBody(
                   icon: Icons.question_answer_outlined,
@@ -143,16 +131,18 @@ class _SettingScreenState extends State<SettingScreen> {
                   subtitle: 'Frequently Asked Questions',
                   traling: null,
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> FAQPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const FAQPage()));
                   },
                 ),
-                SizedBox(height: 16,),
+                const SizedBox(height: 16,),
                 TSettingBody(
                   icon: Iconsax.message,
                   title: 'Feedback',
                   subtitle: 'Add your Feedback',
                   traling: null,
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const FeedbackFormScreen()));
+                  },
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -160,7 +150,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       onPressed: () async{
                     await _logout(context);
 
-                  }, child: Text('logout',style: TextStyle(
+                  }, child: const Text('logout',style: TextStyle(
                     color: Colors.black
                   ),)
                   ),

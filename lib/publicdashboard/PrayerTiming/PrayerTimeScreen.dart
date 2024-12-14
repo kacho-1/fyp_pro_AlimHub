@@ -11,7 +11,7 @@ class PrayertimeScreen extends StatefulWidget {
 class _PrayertimeScreenState extends State<PrayertimeScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home:PrayerScreen(),
     );
   }

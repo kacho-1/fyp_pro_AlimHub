@@ -30,7 +30,7 @@ class CatagoryScreen extends StatelessWidget {
                   ],
                 )
             ),
-            Padding(padding: EdgeInsets.all(24),
+            const Padding(padding: EdgeInsets.all(24),
               child: CAppPortion()
             )
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/CommonFeatures/Customs/CustomColor.dart';
-import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Widget/ScheduleCard.dart';
 
 class AppointmentCard extends StatefulWidget {
   const AppointmentCard({super.key});
@@ -20,10 +19,10 @@ class _AppointmentCardState extends State<AppointmentCard> {
       ),
       child: Material(
         color: Colors.white54,
-        child: Padding(padding: EdgeInsets.all(20),
+        child: Padding(padding: const EdgeInsets.all(20),
         child: Column(
           children:<Widget> [
-            Row(
+            const Row(
               children: [
                 CircleAvatar(
                   radius: 30,
@@ -47,9 +46,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
 
               ],
             ),
-            SizedBox(height: 25,),
-            SheduleCard(),
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -59,13 +56,13 @@ class _AppointmentCardState extends State<AppointmentCard> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                     ),
-                    child: Text('Cancel',
+                    child: const Text('Cancel',
                       style:TextStyle(
                         color: Colors.white,
                       ) ,),
                   ),
                 ),
-                SizedBox(width: 20,),
+                const SizedBox(width: 20,),
 
 
                 Expanded(
@@ -74,7 +71,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                     ),
-                    child: Text('Completed',
+                    child: const Text('Completed',
                       style:TextStyle(
                         color: Colors.white,
                       ) ,),

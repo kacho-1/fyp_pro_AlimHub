@@ -6,12 +6,12 @@ class AboutAlim extends StatelessWidget {
   final String alimImage;
   final String alimSpecialty;
 
-  const AboutAlim({Key? key, required this.alimName, required this.alimImage,required this.alimSpecialty}) : super(key: key);
+  const AboutAlim({super.key, required this.alimName, required this.alimImage,required this.alimSpecialty});
 
   @override
   Widget build(BuildContext context) {
     Config().init(context);
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         children: <Widget>[
@@ -23,7 +23,7 @@ class AboutAlim extends StatelessWidget {
           Config.spaceMedium,
           Text(
             alimName, // Display alim's name dynamically
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -35,7 +35,7 @@ class AboutAlim extends StatelessWidget {
             width: Config.widthSize * 0.75,
             child: Text(
               alimSpecialty, // You can update this to show alim's field or specialty
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 15,

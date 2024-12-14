@@ -5,13 +5,13 @@ import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseScreen.dart';
 class CourseCard extends StatelessWidget {
   final Course course;
 
-  const CourseCard({Key? key, required this.course}) : super(key: key);
+  const CourseCard({super.key, required this.course});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -32,7 +32,7 @@ class CourseCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   course.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'TimesNewRoman', // Times New Roman
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -40,7 +40,7 @@ class CourseCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -56,25 +56,25 @@ class CourseCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: Text("Enroll",style: TextStyle(
+                child: const Text("Enroll",style: TextStyle(
                   color: Colors.white,
                 ),),
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             course.description,
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: 'TimesNewRoman', // Times New Roman
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 decoration: BoxDecoration(
                   color: course.level == "Basic"
                       ? Colors.green
@@ -85,14 +85,14 @@ class CourseCard extends StatelessWidget {
                 ),
                 child: Text(
                   course.level,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'TimesNewRoman', // Times New Roman
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(
                 course.startDate,
                 style: TextStyle(

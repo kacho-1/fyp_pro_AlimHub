@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseModel.dart';
-import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseScreen.dart';
 import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseScreenlist.dart';
 
 class AlimHubApp extends StatelessWidget {
+  const AlimHubApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +15,7 @@ class AlimHubApp extends StatelessWidget {
           secondary: Colors.blue,
         ),
         scaffoldBackgroundColor: Colors.grey[200], // Changed to light grey
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Colors.blueGrey,
           titleTextStyle: TextStyle(
             fontFamily: 'TimesNewRoman', // Set Times New Roman for AppBar
@@ -23,7 +23,7 @@ class AlimHubApp extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyMedium: TextStyle(
             fontFamily: 'TimesNewRoman', // Set Times New Roman
             fontSize: 16,

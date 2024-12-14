@@ -20,7 +20,7 @@ class ChangePhoneNumber extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,7 +29,7 @@ class ChangePhoneNumber extends StatelessWidget {
               'Please enter a valid Phone Number',
               style: Theme.of(context).textTheme.bodySmall,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Text Fields
             Form(
@@ -58,7 +58,7 @@ class ChangePhoneNumber extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             // Save Button
             SizedBox(

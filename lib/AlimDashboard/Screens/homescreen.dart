@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/AlimDashboard/Consultancy%20System/Screens/ConsultancyNavbar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:hijri/hijri_calendar.dart';
 import '../../CommonFeatures/CommunityForum/Main/main_screen.dart';
 import '../../CommonFeatures/Customs/CustomAppbar.dart';
@@ -26,7 +25,7 @@ class AlimHomeScreen extends StatelessWidget {
     final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
-        title:  Center(
+        title:  const Center(
           child: Text('Welcome to Alim Dashboard',style: TextStyle(fontSize:
           16,fontWeight: FontWeight.bold,color: Colors.white),),
 
@@ -34,7 +33,7 @@ class AlimHomeScreen extends StatelessWidget {
         backgroundColor: TColors.primary,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: Icon(Icons.menu, color: Colors.white), // Custom drawer icon color
+            icon: const Icon(Icons.menu, color: Colors.white), // Custom drawer icon color
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
@@ -48,19 +47,19 @@ class AlimHomeScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: TColors.primary,
               ),
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'Alim Menu',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -95,15 +94,15 @@ class AlimHomeScreen extends StatelessWidget {
               )
             ),
             ListTile(
-              leading: Icon(Icons.add),
-              title: Text('Add Fatwa'),
+              leading: const Icon(Icons.add),
+              title: const Text('Add Fatwa'),
               onTap: () {
                 // Navigate to the Scholar Upload Screen
               },
             ),
             ListTile(
-              leading: Icon(Icons.event),
-              title: Text('Add Event'),
+              leading: const Icon(Icons.event),
+              title: const Text('Add Event'),
               onTap: () {
                 // Navigate to the Create Event Screen
 
@@ -111,11 +110,11 @@ class AlimHomeScreen extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.add),
-              title: Text('Add Appointments'),
+              leading: const Icon(Icons.add),
+              title: const Text('Add Appointments'),
               onTap: () {
                 // Navigate to the Create Event Screen
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ConsultancyBTNavbar()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ConsultancyBTNavbar()));
 
               },
             ),
@@ -141,7 +140,7 @@ class AlimHomeScreen extends StatelessWidget {
                         actions: [
                           Stack(
                               children: [
-                                IconButton(onPressed: (){}, icon: Icon(Icons.notifications_rounded,color: Colors.white,)),
+                                IconButton(onPressed: (){}, icon: const Icon(Icons.notifications_rounded,color: Colors.white,)),
                                 Positioned(
                                     right: 0,
                                     child:Container(
@@ -159,12 +158,12 @@ class AlimHomeScreen extends StatelessWidget {
                         ]
 
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Padding(
-                      padding:EdgeInsets.symmetric(horizontal: 24),
+                      padding:const EdgeInsets.symmetric(horizontal: 24),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                             color: TColors.textWhite,
                             borderRadius: BorderRadius.circular(8),
@@ -172,8 +171,8 @@ class AlimHomeScreen extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.search,color: TColors.primary,),
-                            SizedBox(width: 5,),
+                            const Icon(Icons.search,color: TColors.primary,),
+                            const SizedBox(width: 5,),
                             Text('Click her to Search',style: Theme.of(context).textTheme.bodySmall),
 
                           ],
@@ -181,7 +180,7 @@ class AlimHomeScreen extends StatelessWidget {
 
                       ),
                     ),
-                    SizedBox(height: 14,),
+                    const SizedBox(height: 14,),
 
                     ListTile(
                       title: Text('Upcoming Prayer',style: Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white)),
@@ -193,7 +192,7 @@ class AlimHomeScreen extends StatelessWidget {
                             text: TextSpan(
                               children: <InlineSpan>[
                                 WidgetSpan(
-                                  child: Padding(padding: EdgeInsets.all(4),
+                                  child: Padding(padding: const EdgeInsets.all(4),
                                       child: Text( hijra.hDay.toString(),
                                           style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
@@ -202,7 +201,7 @@ class AlimHomeScreen extends StatelessWidget {
 
                                 ),
                                 WidgetSpan(
-                                  child: Padding(padding: EdgeInsets.all(4),
+                                  child: Padding(padding: const EdgeInsets.all(4),
 
                                       child: Text(hijra.longMonthName,style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
@@ -211,7 +210,7 @@ class AlimHomeScreen extends StatelessWidget {
                                 ),
 
                                 WidgetSpan(
-                                  child: Padding(padding: EdgeInsets.all(4),
+                                  child: Padding(padding: const EdgeInsets.all(4),
                                     child: Text('${hijra.hYear} AH', style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
                                     ),),),
@@ -231,7 +230,7 @@ class AlimHomeScreen extends StatelessWidget {
                   ],
                 ) ),
             Text('Common Feature',style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.black),),
-            SizedBox(height: 32,),
+            const SizedBox(height: 32,),
     Padding(
     padding: const EdgeInsets.all(8),
     child: SingleChildScrollView(
@@ -258,7 +257,7 @@ class AlimHomeScreen extends StatelessWidget {
     text: 'Tasbih',
     onPressed: () {
     Navigator.push(
-    context, MaterialPageRoute(builder: (context) => TisbahScreen()));
+    context, MaterialPageRoute(builder: (context) => const TisbahScreen()));
     },
     ),
     SvgTextButton(
@@ -266,7 +265,7 @@ class AlimHomeScreen extends StatelessWidget {
     text: 'Prayers',
     onPressed: () {
     Navigator.push(
-    context, MaterialPageRoute(builder: (context) => PrayerScreen()));
+    context, MaterialPageRoute(builder: (context) => const PrayerScreen()));
     },
     ),
     SvgTextButton(
@@ -274,7 +273,7 @@ class AlimHomeScreen extends StatelessWidget {
     text: 'Dua',
     onPressed: () {
     Navigator.push(
-    context, MaterialPageRoute(builder: (context) => DuasScreen()));
+    context, MaterialPageRoute(builder: (context) => const DuasScreen()));
     },
     ),
     SvgTextButton(
@@ -282,7 +281,7 @@ class AlimHomeScreen extends StatelessWidget {
     text: 'Quran',
     onPressed: () {
     Navigator.push(
-    context, MaterialPageRoute(builder: (context) => QuranMainScreen()));
+    context, MaterialPageRoute(builder: (context) => const QuranMainScreen()));
     },
     ),
     SvgTextButton(
@@ -298,7 +297,7 @@ class AlimHomeScreen extends StatelessWidget {
     ),
     ),
 
-    SizedBox(height: 25,)
+    const SizedBox(height: 25,)
           ],
         ),
       ),

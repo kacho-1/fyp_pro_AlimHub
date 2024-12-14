@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'CustomAppbar.dart';
 import 'CustomColor.dart';
 import 'CustomCurveEdges.dart';
 class TPrimaryHeaderContainer extends StatelessWidget {
@@ -16,9 +15,9 @@ class TPrimaryHeaderContainer extends StatelessWidget {
         child: Stack(
           children: [
 
-            Positioned(top: 150, right: -250,
+            const Positioned(top: 150, right: -250,
                 child: TCircularContainer()),
-            Positioned(top: 100, right: -300,
+            const Positioned(top: 100, right: -300,
                 child: TCircularContainer()),
 
             child,
@@ -67,7 +66,7 @@ class TCircularContainer extends StatelessWidget {
     return Container(
       width: 400,
       height: 400,
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(400),
         color: TColors.textWhite.withOpacity(0.1),

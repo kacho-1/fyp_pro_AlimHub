@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../CommonFeatures/Customs/CustomColor.dart';
 import '../Controller/AlimDetailController.dart';
@@ -20,7 +19,7 @@ class AddConsultancyDetals extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Details'),
+        title: const Text('Add Details'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -30,81 +29,81 @@ class AddConsultancyDetals extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Experence in Year',
+              const Text('Experence in Year',
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),),
               // New "Fee" TextField
-              SizedBox(height: 16,),
+              const SizedBox(height: 16,),
               // New "Specialty" TextField
               TextField(
                 controller: experienceController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Experience',
                   hintText: 'Enter your Experience',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16,),
-              Text('Consultancy Fee',
+              const SizedBox(height: 16,),
+              const Text('Consultancy Fee',
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),),
               // New "Fee" TextField
-              SizedBox(height: 16,),
+              const SizedBox(height: 16,),
               TextField(
                 controller: feeController,
 
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Fee',
                   hintText: 'Enter your fee',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number, // For numeric input
               ),
-              SizedBox(height: 16.0),
-              Text('Speciality Field',
+              const SizedBox(height: 16.0),
+              const Text('Speciality Field',
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),),
               // New "Fee" TextField
-              SizedBox(height: 16,),
+              const SizedBox(height: 16,),
               // New "Specialty" TextField
               TextField(
                 controller: specialtyController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Specialty Field',
                   hintText: 'Enter your specialty field',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16,),
-              Text('About Yourself',
+              const SizedBox(height: 16,),
+              const Text('About Yourself',
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),),
               // New "Fee" TextField
-              SizedBox(height: 16,),
+              const SizedBox(height: 16,),
               TextField(
                 controller: aboutController,
                 maxLines: 5,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'About',
                   hintText: 'Tell us about yourself',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 5,
                     backgroundColor: TColors.primary,
-                    minimumSize: Size(140, 50),
+                    minimumSize: const Size(140, 50),
                   ),
                   onPressed: () {
                     // Save consultancy details
@@ -116,7 +115,7 @@ class AddConsultancyDetals extends StatelessWidget {
                     // Pass the Alim UID
                     );
                   },
-                  child: Text('Save',
+                  child: const Text('Save',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,

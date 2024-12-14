@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Models/QariModel.dart';
 
 class QariCustomTile extends StatefulWidget {
-  const QariCustomTile({Key? key,required  this.qari,required this.ontap}) : super(key:key);
+  const QariCustomTile({super.key,required  this.qari,required this.ontap});
   final Qari qari;
   final VoidCallback ontap;
   @override
@@ -16,10 +16,10 @@ class _QariCustomTileState extends State<QariCustomTile> {
     return GestureDetector(
       onTap:  widget.ontap,
       child: Padding(
-          padding: EdgeInsets.all(4),
+          padding: const EdgeInsets.all(4),
       child: Container(
-       padding: EdgeInsets.all(20),
-       decoration: BoxDecoration(
+       padding: const EdgeInsets.all(20),
+       decoration: const BoxDecoration(
          color: Colors.white,
          shape: BoxShape.rectangle,
          borderRadius:  BorderRadius.all(Radius.circular(8)),
@@ -35,7 +35,7 @@ class _QariCustomTileState extends State<QariCustomTile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(widget.qari.name!,textAlign: TextAlign.start,
-              style:TextStyle(
+              style:const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ) ,)

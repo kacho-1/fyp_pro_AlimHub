@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+
 
 class DataFetchController extends GetxController {
   var alimList = <AlimAvailabilityModel>[].obs; // Observable list of alim availability

@@ -53,11 +53,11 @@ class SvgTextButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const SvgTextButton({
-    Key? key,
+    super.key,
     required this.svgPath,
     required this.text,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class SvgTextButton extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               color: Colors.black,
             ),

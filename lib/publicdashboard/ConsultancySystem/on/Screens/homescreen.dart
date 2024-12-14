@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fyp_pro/CommonFeatures/Customs/CustomColor.dart';
 import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Controller/DataFetching%20controller.dart';
 import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Widget/alimcard.dart';
-import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Screens/alimdetailscreen.dart';
 import 'package:get/get.dart';
 
 class ConsultancyHome extends StatefulWidget {
-  ConsultancyHome({super.key});
+  const ConsultancyHome({super.key});
 
   @override
   State<ConsultancyHome> createState() => _ConsultancyHomeState();
@@ -40,7 +39,7 @@ class _ConsultancyHomeState extends State<ConsultancyHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text(
             'Alim List',
             style: TextStyle(
@@ -55,25 +54,25 @@ class _ConsultancyHomeState extends State<ConsultancyHome> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                       color: TColors.textWhite,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: Colors.white)),
                   child: Row(
                     children: [
-                      Icon(Icons.search, color: TColors.primary),
-                      SizedBox(width: 5),
+                      const Icon(Icons.search, color: TColors.primary),
+                      const SizedBox(width: 5),
                       Expanded(
                         child: TextField(
                           controller: searchController,
                           onChanged: filterAlims,  // Trigger the filter function on text change
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Search for an Alim...',
                             border: InputBorder.none,
                           ),
@@ -83,8 +82,8 @@ class _ConsultancyHomeState extends State<ConsultancyHome> {
                   ),
                 ),
               ),
-              SizedBox(height: 25),
-              Text(
+              const SizedBox(height: 25),
+              const Text(
                 'Top Alims',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
@@ -92,7 +91,7 @@ class _ConsultancyHomeState extends State<ConsultancyHome> {
               Obx(() {
                 // Check if alimList is empty or still loading
                 if (controller.alimList.isEmpty) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else {
                   return Column(
                     children: filteredAlimList.map((alim) {

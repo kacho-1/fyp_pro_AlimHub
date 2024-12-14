@@ -8,12 +8,13 @@ import '../controller.dart';
 class AlimAvailabilityScreen extends StatelessWidget {
   final AlimAvailabilityController controller =
   Get.put(AlimAvailabilityController());
+ AlimAvailabilityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Set Availability'),
+        title: const Text('Set Availability'),
         centerTitle: true,
       ),
       body: Padding(
@@ -24,7 +25,7 @@ class AlimAvailabilityScreen extends StatelessWidget {
               controller: TextEditingController(
                   text: controller.dateFieldText.value),
               readOnly: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Select Date',
                 hintText: 'Choose a date',
                 suffixIcon: Icon(Icons.calendar_today_outlined),
@@ -39,7 +40,7 @@ class AlimAvailabilityScreen extends StatelessWidget {
                   context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime.now(),
-                  lastDate: DateTime.now().add(Duration(days: 365)),
+                  lastDate: DateTime.now().add(const Duration(days: 365)),
                   builder: (context, child) {
                     return Theme(
                       data: ThemeData.light().copyWith(
@@ -58,7 +59,7 @@ class AlimAvailabilityScreen extends StatelessWidget {
                 }
               },
             )),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Obx(() => Wrap(
               spacing: 8.0,
               runSpacing: 8.0,
@@ -66,12 +67,12 @@ class AlimAvailabilityScreen extends StatelessWidget {
                   .map((date) => Chip(
                 label: Text(
                     '${DateFormat('yyyy-MM-dd').format(date)} (${DateFormat('EEEE').format(date)})'),
-                deleteIcon: Icon(Icons.close),
+                deleteIcon: const Icon(Icons.close),
                 onDeleted: () => controller.removeSelectedDate(date),
               ))
                   .toList(),
             )),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Expanded(
               child: Obx(() => ListView.builder(
                 itemCount: controller.selectedDates.length,

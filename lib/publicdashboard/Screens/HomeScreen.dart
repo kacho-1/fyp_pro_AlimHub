@@ -1,22 +1,17 @@
-import 'package:flutter/cupertino.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:location/location.dart';
 import '../../CommonFeatures/CommunityForum/Main/Controller/main_screen_controller.dart';
 import '../../CommonFeatures/Customs/CustomAppPortion.dart';
 import '../../CommonFeatures/Customs/CustomAppbar.dart';
-import '../../CommonFeatures/Customs/CustomColor.dart';
 import '../../CommonFeatures/Customs/CustomContainier.dart';
 import '../../CommonFeatures/PrayerTiming/UpcomingPrayerTime.dart';
 import '../../CommonFeatures/Profile/Controller/Profilecontroller.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -39,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   final _controller = Get.put(MainScreenController(),permanent: true);
   final controller = Get.put(ProfileController());
+  @override
   Widget build(BuildContext context) {
     var hijra = HijriCalendar.now();
 
@@ -64,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         actions: [
                           Stack(
                               children: [
-                                IconButton(onPressed: (){}, icon: Icon(Icons.notifications_rounded,color: Colors.white,)),
+                                IconButton(onPressed: (){}, icon: const Icon(Icons.notifications_rounded,color: Colors.white,)),
                                 Positioned(
                                     right: 0,
                                     child:Container(
@@ -82,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ]
 
                     ),
-                    SizedBox(height: 14,),
+                    const SizedBox(height: 14,),
 
                     ListTile(
                       title: Text('Upcoming Prayer',style: Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white)),
@@ -94,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             text: TextSpan(
                               children: <InlineSpan>[
                                 WidgetSpan(
-                                  child: Padding(padding: EdgeInsets.all(4),
+                                  child: Padding(padding: const EdgeInsets.all(4),
                                       child: Text( hijra.hDay.toString(),
                                           style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
@@ -103,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                 ),
                                 WidgetSpan(
-                                  child: Padding(padding: EdgeInsets.all(4),
+                                  child: Padding(padding: const EdgeInsets.all(4),
 
                                       child: Text(hijra.longMonthName,style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
@@ -112,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
 
                                 WidgetSpan(
-                                  child: Padding(padding: EdgeInsets.all(4),
+                                  child: Padding(padding: const EdgeInsets.all(4),
                                     child: Text('\n${hijra.hYear} AH', style:Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white,
 
                                     )),),
@@ -132,9 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ) ),
             Text('Category',style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.black),),
-            SizedBox(height: 32,),
-            CAppPortion(),
-            SizedBox(height: 25,)
+            const SizedBox(height: 32,),
+            const CAppPortion(),
+            const SizedBox(height: 25,)
           ],
         ),
       ),

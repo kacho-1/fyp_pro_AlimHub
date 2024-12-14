@@ -30,7 +30,7 @@ class _QiblahState extends State<Qiblah> {
             future: qiblahSupport,
             builder:(_,AsyncSnapshot<bool?>snapshot) {
               if(snapshot.connectionState==ConnectionState.waiting){
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
@@ -41,10 +41,10 @@ class _QiblahState extends State<Qiblah> {
                 );
               }
               if (snapshot.data!){
-                return QiblahCompass();
+                return const QiblahCompass();
               }
               else{
-                return Center(
+                return const Center(
                   child: Text('Your Device is not Supported'),
                 );
               }

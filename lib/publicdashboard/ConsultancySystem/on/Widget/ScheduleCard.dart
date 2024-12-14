@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SheduleCard extends StatelessWidget {
-  const SheduleCard({super.key});
+class ScheduleCard extends StatelessWidget {
+  final String date;
+  final String timeSlot;
+
+  const ScheduleCard({super.key, required this.date, required this.timeSlot});
 
   @override
   Widget build(BuildContext context) {
@@ -9,35 +12,20 @@ class SheduleCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.blueGrey,
         borderRadius: BorderRadius.circular(10),
-
       ),
-      width: double.infinity,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Icon(
-            Icons.calendar_today,
-            color: Colors.white,
-            size: 15,
+          const Icon(Icons.calendar_today, color: Colors.white, size: 15),
+          const SizedBox(width: 5),
+          Text(date, style: const TextStyle(color: Colors.white)),
+          const SizedBox(width: 20),
+          const Icon(Icons.access_alarm, color: Colors.white, size: 17),
+          const SizedBox(width: 5),
+          Flexible(
+            child: Text(timeSlot, style: const TextStyle(color: Colors.white)),
           ),
-          SizedBox(width: 5,),
-          Text('Monday, 11/28/2024',
-          style: TextStyle(
-            color: Colors.white,
-          ),),
-          SizedBox(width: 20,),
-          Icon(
-            Icons.access_alarm,
-            color: Colors.white,
-            size: 17,
-          ),
-          SizedBox(width: 5,),
-          Flexible(child: Text('2:00 PM',
-          style: TextStyle(
-            color: Colors.white,
-
-          ),)),
         ],
       ),
     );

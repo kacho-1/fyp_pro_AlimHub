@@ -5,7 +5,7 @@ import 'package:fyp_pro/main.dart';
 void main() {
   testWidgets('MyApp Test when logged in', (WidgetTester tester) async {
     // Create the widget by providing required parameters
-    await tester.pumpWidget(MyApp(
+    await tester.pumpWidget(const MyApp(
       isLoggedIn: true,    // Simulate a logged-in state
       userRole: 'Public',  // Provide a role for testing, e.g., 'Public'
     ));
@@ -15,7 +15,7 @@ void main() {
 
   testWidgets('MyApp Test when not logged in', (WidgetTester tester) async {
     // Create the widget with not logged-in state
-    await tester.pumpWidget(MyApp(
+    await tester.pumpWidget(const MyApp(
       isLoggedIn: false,   // Simulate a not-logged-in state
       userRole: null,      // No user role when not logged in
     ));

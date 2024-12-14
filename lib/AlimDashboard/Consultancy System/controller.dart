@@ -102,6 +102,7 @@ class AlimAvailabilityController extends GetxController {
         slots.add({
           'startTime': startTime,
           'endTime': endTime,
+          'isBooked':false,
         });
 
         // Update Firestore with the new slot

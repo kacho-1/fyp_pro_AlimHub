@@ -4,12 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:universal_io/io.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:universal_io/io.dart';
+
 
 class ProfileController extends GetxController {
   static ProfileController get instance => Get.find();
@@ -137,7 +132,7 @@ class ProfileController extends GetxController {
 
   Future<String?> uploadFile() async {
     // Ensure that the selectedImagePath is not null and valid
-    if (selectedImagePath.value == null || selectedImagePath.value.isEmpty) {
+    if (selectedImagePath.value.isEmpty) {
       print('No image selected.');
       return null; // Return null if there's no image
     }

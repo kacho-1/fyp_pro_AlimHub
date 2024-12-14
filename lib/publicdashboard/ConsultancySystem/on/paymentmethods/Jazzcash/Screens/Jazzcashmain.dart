@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class JazzCashPaymentPage extends StatefulWidget {
-  const JazzCashPaymentPage({Key? key}) : super(key: key);
+  const JazzCashPaymentPage({super.key});
 
   @override
   _JazzCashPaymentPageState createState() => _JazzCashPaymentPageState();

@@ -9,7 +9,7 @@ import 'Controller/add_post_controller.dart';
 
 
 class AddPostScreen extends StatelessWidget {
-  AddPostScreen({Key? key}) : super(key: key);
+  AddPostScreen({super.key});
 
   final _profileController = Get.put(ProfileController());
   final _postController = Get.put(AddPostController());
@@ -123,21 +123,21 @@ class AddPostScreen extends StatelessWidget {
                         showDialog(
                          context: context,
                           builder: (ctx) => AlertDialog(
-                           title: Text('Empty Post'),
-                            content: Text('Please enter some text or select an image.'),
+                           title: const Text('Empty Post'),
+                            content: const Text('Please enter some text or select an image.'),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
                                  Navigator.of(ctx).pop();
                                },
-                                child: Text('OK'),
+                                child: const Text('OK'),
                                ),
                                 ],
                                 ),
                                 );
                                return;
 
-                      };_postController.addPost(
+                      }_postController.addPost(
                         userName: _profileController.name.value,
                         userUrl: _profileController.imageUrl.value,
                       );

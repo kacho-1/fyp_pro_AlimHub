@@ -4,7 +4,7 @@ import 'package:fyp_pro/publicdashboard/IslamicCourses/CourseModel.dart';
 class CourseDetailScreen extends StatelessWidget {
   final Course course;
 
-  const CourseDetailScreen({Key? key, required this.course}) : super(key: key);
+  const CourseDetailScreen({super.key, required this.course});
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +20,22 @@ class CourseDetailScreen extends StatelessWidget {
             children: [
               Text(
                 'Instructor: ${course.instructor}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'TimesNewRoman', // Times New Roman
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 'Start Date: ${course.startDate}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'TimesNewRoman', // Times New Roman
                   fontSize: 16,
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Course Details',
                 style: TextStyle(
                   fontFamily: 'TimesNewRoman', // Times New Roman
@@ -43,7 +43,7 @@ class CourseDetailScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 course.article,
                 style: TextStyle(
@@ -52,7 +52,7 @@ class CourseDetailScreen extends StatelessWidget {
                   color: Colors.grey[800],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // Enroll action can be handled here
@@ -60,7 +60,7 @@ class CourseDetailScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                 ),
-                child: Text('Confirm Enrollment',style: TextStyle(
+                child: const Text('Confirm Enrollment',style: TextStyle(
                   color: Colors.white
                 ),),
               ),

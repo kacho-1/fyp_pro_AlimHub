@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -14,7 +13,7 @@ import '../CommonFeatures/Profile/Controller/Profilecontroller.dart';
 
 
 class Signup extends StatefulWidget {
-  const Signup({Key? key}) : super(key: key);
+  const Signup({super.key});
 
   @override
   _SignupState createState() => _SignupState();
@@ -46,7 +45,7 @@ class _SignupState extends State<Signup> {
   var isLoading = false.obs;
 
   //var isImgAvailable = false.obs;
-  final _picker = ImagePicker();
+  //final _picker = ImagePicker();
   //var selectedImagePath = ''.obs;
   //var selectedImageSize = ''.obs;
 
@@ -194,15 +193,15 @@ class _SignupState extends State<Signup> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 8.0,vertical: 0.0),
+          padding:  const EdgeInsets.symmetric(horizontal: 8.0,vertical: 0.0),
           child: Card(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
 
 
             ),
             //elevation: 10.0,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0,vertical: 0.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 0.0),
                 child:CSCPicker(
                   layout: Layout.vertical,
                   flagState: CountryFlag.ENABLE,
@@ -227,26 +226,26 @@ class _SignupState extends State<Signup> {
                   dropdownDialogRadius: 12,
                   searchBarRadius: 30,
                   dropdownDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderRadius: const BorderRadius.all(Radius.circular(18)),
                     color: Colors.grey,
                     border: Border.all(color: Colors.white,width: 2),
 
                   ),
                   disabledDropdownDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderRadius: const BorderRadius.all(Radius.circular(18)),
                     color: Colors.grey.shade500,
                     border: Border.all(color: Colors.white,width: 2),
                   ),
-                  selectedItemStyle: TextStyle(
+                  selectedItemStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
                   ),
-                  dropdownHeadingStyle: TextStyle(
+                  dropdownHeadingStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
-                  dropdownItemStyle: TextStyle(
+                  dropdownItemStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
                   ),
@@ -268,7 +267,7 @@ class _SignupState extends State<Signup> {
       child: Scaffold(
         //backgroundColor: Colors.green.shade800,
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/bg.jfif'),
               fit: BoxFit.cover, // Adjust the image to cover the entire screen
@@ -286,7 +285,7 @@ class _SignupState extends State<Signup> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(height: screenHeight * 0.03),
-                          Text(
+                          const Text(
                             'Sign Up',
                             style: TextStyle(
                               fontSize: 28,
@@ -371,7 +370,7 @@ class _SignupState extends State<Signup> {
                             icon: Icons.lock_outline,
                             obscureText: true,
                             validator: (value) {
-                              if (value==null || value!.isEmpty) {
+                              if (value==null || value.isEmpty) {
                                 return 'Please Enter Password';
                               }
                               if (value.length < 6) {
@@ -548,8 +547,8 @@ class _SignupState extends State<Signup> {
             }
           },
           child: _isLoading
-              ? CircularProgressIndicator(color: Colors.black)
-              : Text('Sign Up', style: TextStyle(fontSize: 22, color: Colors.black)),
+              ? const CircularProgressIndicator(color: Colors.black)
+              : const Text('Sign Up', style: TextStyle(fontSize: 22, color: Colors.black)),
 
         ),
       ),

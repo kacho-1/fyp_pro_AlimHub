@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../CommonFeatures/Customs/CustomColor.dart';
 
 class DuasScreen extends StatelessWidget {
+  const DuasScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,14 +183,14 @@ class DuasScreen extends StatelessWidget {
             Row(
               children: [
                 Icon(icon, size: 28.0, color: Colors.white), // White icon color
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Text(
                   title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white), // White text color
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white), // White text color
                 ),
               ],
             ),
-            Divider(color: Colors.white), // White divider color
+            const Divider(color: Colors.white), // White divider color
             ...tiles,
           ],
         ),
@@ -201,12 +203,12 @@ class DuasScreen extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(arabic, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)), // White text color
-          SizedBox(height: 4),
+          Text(arabic, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)), // White text color
+          const SizedBox(height: 4),
           Text(transliteration, style: TextStyle(fontSize: 14, color: Colors.grey[300])), // Light grey color for transliteration
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(arabicUrdu, style: TextStyle(fontSize: 14, color: Colors.grey[300])), // Light grey color for Urdu
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(translation, style: TextStyle(fontSize: 14, color: Colors.grey[200])), // Very light grey color for English
         ],
       ),

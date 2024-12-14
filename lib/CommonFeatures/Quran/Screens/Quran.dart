@@ -54,22 +54,22 @@ class _QuranScreenState extends State<QuranScreen> {
                            Constants.surahIndex = (index+1);
                          });
                          Navigator.push(context,
-                             MaterialPageRoute(builder: (context)=>Surahdetail())
+                             MaterialPageRoute(builder: (context)=>const Surahdetail())
                          );
                            }),
 
                    );
                }
-                 return Center(
+                 return const Center(
                    child: CircularProgressIndicator(),
                  );
                },),
 
                 GestureDetector(
                   child: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                         itemCount: 30,
                         itemBuilder: (context,index)
                     {
@@ -84,7 +84,7 @@ class _QuranScreenState extends State<QuranScreen> {
                           elevation: 4,
                           color: Colors.blueGrey,
                           child: Center(
-                            child: Text('${index+1}',style: TextStyle(color: Colors.white,fontSize: 20),),
+                            child: Text('${index+1}',style: const TextStyle(color: Colors.white,fontSize: 20),),
                           ),
                         ),
                       );

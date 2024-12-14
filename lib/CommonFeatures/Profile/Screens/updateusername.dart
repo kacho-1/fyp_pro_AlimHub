@@ -19,7 +19,7 @@ class ChangeUserName extends StatelessWidget {
         title: Text('Change UserName', style: Theme.of(context).textTheme.headlineSmall,),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,7 +27,7 @@ class ChangeUserName extends StatelessWidget {
             Text('Enter your username. This not show anywhere in the app',
               style: Theme.of(context).textTheme.bodySmall,
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
             // Text Fields
             Form(
@@ -44,7 +44,7 @@ class ChangeUserName extends StatelessWidget {
                   )],
               ),
             ),
-            SizedBox(height:10,),
+            const SizedBox(height:10,),
 
             // Save Button
             SizedBox(width: double.infinity,

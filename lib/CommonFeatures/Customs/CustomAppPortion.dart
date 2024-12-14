@@ -23,7 +23,7 @@ class _CAppPortionState extends State<CAppPortion> {
       child: GridView.count(
         shrinkWrap: true, // Ensures GridView fits within ListView
         crossAxisCount: 3,
-        physics: NeverScrollableScrollPhysics(), // Disable inner scrolling
+        physics: const NeverScrollableScrollPhysics(), // Disable inner scrolling
         children: [
           SvgTextButton(
             svgPath: 'assets/images/collection_icon/fatwa.svg',
@@ -51,28 +51,28 @@ class _CAppPortionState extends State<CAppPortion> {
             svgPath: 'assets/images/collection_icon/tasbih.svg',
             text: 'Tasbih',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => TisbahScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const TisbahScreen()));
             },
           ),
           SvgTextButton(
             svgPath: 'assets/images/collection_icon/prayer_time.svg',
             text: 'Prayers',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PrayerScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const PrayerScreen()));
             },
           ),
           SvgTextButton(
             svgPath: 'assets/images/collection_icon/duas.svg',
             text: 'Dua',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => DuasScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const DuasScreen()));
             },
           ),
           SvgTextButton(
             svgPath: 'assets/images/collection_icon/quran.svg',
             text: 'Quran',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => QuranMainScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const QuranMainScreen()));
             },
           ),
           SvgTextButton(
@@ -86,7 +86,7 @@ class _CAppPortionState extends State<CAppPortion> {
             svgPath: 'assets/images/collection_icon/course.svg',
             text: 'Courses',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AlimHubApp())); // Adjust navigation for course selection
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AlimHubApp())); // Adjust navigation for course selection
             },
           ),
         ],

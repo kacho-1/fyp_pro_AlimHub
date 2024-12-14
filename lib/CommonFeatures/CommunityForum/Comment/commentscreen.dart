@@ -11,19 +11,28 @@ import 'Controller/CommentController.dart';
 
 
 
-class CommentsScreen extends StatelessWidget {
-  CommentsScreen({Key? key,}) : super(key: key);
+class CommentsScreen extends StatefulWidget {
+  const CommentsScreen({super.key,});
 
+  @override
+  State<CommentsScreen> createState() => _CommentsScreenState();
+}
+
+class _CommentsScreenState extends State<CommentsScreen> {
   final _commentController = Get.put(CommentController());
+
   final _arguments = Get.arguments;
+
   final Post post = Get.arguments as Post;
+
   User? currentUser = FirebaseAuth.instance.currentUser;
+
   final controller = Get.put(ProfileController());
+
   String _getTimeAgo(int timestamp) {
     final date = DateTime.fromMillisecondsSinceEpoch(timestamp);
     return timeago.format(date);
   }
-
 
   @override
   Widget build(BuildContext context) {

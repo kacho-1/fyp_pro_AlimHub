@@ -19,10 +19,10 @@ class AudioTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-          padding: EdgeInsets.all(4),
+          padding: const EdgeInsets.all(4),
       child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(16),
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
           color: Colors.white,
           boxShadow: [
@@ -40,41 +40,41 @@ class AudioTile extends StatelessWidget {
               alignment: Alignment.center,
               height: 30,
               width: 40,
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.black
               ),
               child: Text(number.toString(),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),),
             ),
-            SizedBox(width: 20,),
+            const SizedBox(width: 20,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                 surahName!,
                 textAlign: TextAlign.end,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
                 ),
-                SizedBox(height: 3,),
+                const SizedBox(height: 3,),
                 Text('Total Aya : $totalAya',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black54,
                   fontSize: 16,
                 ),)
               ],
             ),
-            Spacer(),
-            Icon(Icons.play_circle_fill, color: TColors.primary,),
+            const Spacer(),
+            const Icon(Icons.play_circle_fill, color: TColors.primary,),
           ],
         ),
       ),),

@@ -1,57 +1,143 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/Screens/paymnetmethod.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-
 import '../../../../CommonFeatures/Customs/CustomColor.dart';
-import 'paymnetmethod.dart';
+import '../../../../CommonFeatures/Profile/Controller/Profilecontroller.dart';
 
 class AlimBookingPage extends StatefulWidget {
   final String alimData; // Pass Alim UID
-  const AlimBookingPage({required this.alimData, super.key});
+  final String ConsultancyType;
+  const AlimBookingPage({required this.alimData,required this.ConsultancyType, super.key});
 
   @override
   State<AlimBookingPage> createState() => _AlimBookingPageState();
 }
 
 class _AlimBookingPageState extends State<AlimBookingPage> {
+  final controller = Get.put(ProfileController());
   DateTime? _selectedDate;
+  int? _selectedTimeIndex;
   bool _dateSelected = false;
   bool _timeSelected = false;
-  int? _selectedTimeIndex;
+  List<Map<String, dynamic>> _timeSlots = [];
 
-  List<Map<String, dynamic>> _timeSlots = []; // Dynamic time slots list
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final Map<String, List<Map<String, dynamic>>> _cachedTimeSlots = {}; // Cache for fetched slots
 
-  // Fetch time slots for the selected date
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Appointment Booking'),
+      ),
+      body: Column(
+        children: [
+          // Date Picker using Syncfusion Calendar
+          Expanded(
+            child: SfCalendar(
+              view: CalendarView.month,
+              todayHighlightColor: TColors.primary,
+              selectionDecoration: BoxDecoration(
+                border: Border.all(color: TColors.primary, width: 2),
+              ),
+              onSelectionChanged: (details) {
+                DateTime selectedDate = details.date!;
+                if (selectedDate.isBefore(DateTime.now().subtract(const Duration(days: 1)))) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Cannot select past dates.")),
+                  );
+                } else {
+                  setState(() {
+                    _selectedDate = selectedDate;
+                    _dateSelected = true;
+                    _fetchTimeSlotsForDate(); // Fetch time slots for the selected date
+                  });
+                }
+              },
+
+            ),
+          ),
+          // Display Time Slots
+          Expanded(
+            child: _dateSelected
+                ? _timeSlots.isEmpty
+                ? const Center(child: Text("No slots available for this date."))
+                : ListView.builder(
+              itemCount: _timeSlots.length,
+              itemBuilder: (context, index) {
+                bool isBooked = _timeSlots[index]['isBooked'];
+                return ListTile(
+                  title: Text(
+                    "${_timeSlots[index]['startTime']} - ${_timeSlots[index]['endTime']}",
+                    style: TextStyle(
+                      color: isBooked ? Colors.red : Colors.black,
+                      decoration: isBooked ? TextDecoration.lineThrough : null,
+                    ),
+                  ),
+                  trailing: isBooked
+                      ? const Text("Booked")
+                      : Radio<int>(
+                    value: index,
+                    groupValue: _selectedTimeIndex,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedTimeIndex = value;
+                        _timeSelected = true;
+                      });
+                    },
+                  ),
+                );
+              },
+            )
+                : const Center(child: Text("Select a date to view time slots.")),
+          ),
+          // Confirm Button
+          ElevatedButton(
+            onPressed: _dateSelected && _timeSelected ? _saveAppointment : null,
+            style: ElevatedButton.styleFrom(
+              elevation: 5,
+              backgroundColor: TColors.primary,
+              minimumSize: const Size (200,50),
+
+            ),
+            child: const Text("Proceed to Payment",style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.white
+            )),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Fetch available time slots for the selected date
   Future<void> _fetchTimeSlotsForDate() async {
-    if (_selectedDate == null) return;
-
     String formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate!);
-
-    // Check cache first
-    if (_cachedTimeSlots.containsKey(formattedDate)) {
-      setState(() {
-        _timeSlots = _cachedTimeSlots[formattedDate]!;
-      });
-      return;
-    }
-
     try {
-      var timeSlotsSnapshot = await _firestore
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore
           .collection('alim_availability')
           .doc(widget.alimData)
           .collection('timeSlots')
-          .doc(formattedDate) // Document ID is the date
+          .doc(formattedDate)
           .get();
 
-      if (timeSlotsSnapshot.exists) {
-        List<Map<String, dynamic>> slots = List<Map<String, dynamic>>.from(timeSlotsSnapshot['slots']);
+      if (snapshot.exists) {
+        List<Map<String, dynamic>> slots = List<Map<String, dynamic>>.from(snapshot['slots']);
+
+        // Ensure all slots have the isBooked field
+        slots = slots.map((slot) {
+          return {
+            "startTime": slot["startTime"],
+            "endTime": slot["endTime"],
+            "isBooked": slot["isBooked"] ?? false, // Default to false if null
+          };
+        }).toList();
+
         setState(() {
           _timeSlots = slots;
-          _cachedTimeSlots[formattedDate] = slots; // Cache the result
         });
       } else {
         setState(() {
@@ -59,147 +145,68 @@ class _AlimBookingPageState extends State<AlimBookingPage> {
         });
       }
     } catch (e) {
-      print('Error fetching time slots: $e');
+      print("Error fetching time slots: $e");
+    }
+  }
+
+
+  // Save appointment to Firestore
+  // Save appointment to Firestore
+  Future<void> _saveAppointment() async {
+    try {
+      String name = controller.name.value;
+      String imgUrl = controller.imageUrl.toString();
+      String userId = controller.userId; // Replace with the actual logged-in user's ID
+      String alimId = widget.alimData;
+      String consultancytype = widget.ConsultancyType;
+      String formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate!);
+      Map<String, dynamic> selectedSlot = _timeSlots[_selectedTimeIndex!];
+
+      // Generate unique room ID
+      String roomId = "${alimId.substring(0, 4)}_${userId.substring(0, 4)}";
+
+      // Determine if it's a chat or video room
+      String roomKey = consultancytype == "Text-based" ? "chatRoomId" : "videoRoomId";
+      String appointmentId = _firestore.collection('appointments').doc().id;
+      // Create the appointment
+      DocumentReference appointmentRef = _firestore.collection('appointments').doc();
+
+      await appointmentRef.set({
+        "appointmentId": appointmentId,
+        "userId": userId,
+        "alimId": alimId,
+        "date": formattedDate,
+        "timeSlot": "${selectedSlot['startTime']} - ${selectedSlot['endTime']}",
+        "type": consultancytype, // Consultancy type selected by the user
+        "status": "upcoming",
+        "name": name,
+        "profilePicture": imgUrl,
+        "startTime": selectedSlot['startTime'],
+        "endTime": selectedSlot['endTime'],
+        roomKey: roomId, // Save chatRoomId or videoRoomId
+      });
+
+      // Update the time slot as booked
+      _timeSlots[_selectedTimeIndex!]['isBooked'] = true;
+      await _firestore
+          .collection('alim_availability')
+          .doc(alimId)
+          .collection('timeSlots')
+          .doc(formattedDate)
+          .update({"slots": _timeSlots});
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to fetch time slots. Please try again.')),
+        const SnackBar(content: Text("Appointment booked successfully.")),
+      );
+
+      // Navigate to payment
+      Get.to(() => const PaymentMethodPage()); // Replace with your payment screen
+    } catch (e) {
+      print("Error saving appointment: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Failed to book appointment.")),
       );
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Appointment'),
-      ),
-      body: Column(
-        children: [
-          // Calendar for selecting the date
-          Expanded(
-            flex: 2,
-            child: SfCalendar(
-              view: CalendarView.month,
-              todayHighlightColor: TColors.primary,
-              selectionDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.grey, width: 2),
-              ),
-              onSelectionChanged: (details) {
-                setState(() {
-                  _selectedDate = details.date;
-                  _dateSelected = true;
-                  _timeSelected = false; // Reset time selection
-                  _selectedTimeIndex = null; // Clear selected time index
-                });
-                _fetchTimeSlotsForDate(); // Fetch slots for the selected date
-              },
-            ),
-          ),
-          if (_dateSelected)
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "Selected Date: ${_selectedDate?.toLocal().toString().split(' ')[0]}",
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-            ),
-          if (_dateSelected)
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "Available Slots for ${_selectedDate?.toLocal().toString().split(' ')[0]}",
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-            ),
-          // Time slots for the selected date
-          if (_dateSelected)
-            Container(
-              height: 100,
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: _timeSlots.isNotEmpty
-                  ? ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: _timeSlots.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedTimeIndex = index;
-                        _timeSelected = true;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10.0,
-                        horizontal: 20.0,
-                      ),
-                      decoration: BoxDecoration(
-                        color: _selectedTimeIndex == index
-                            ? TColors.primary
-                            : Colors.white,
-                        border: Border.all(color: Colors.grey, width: 1),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "${_timeSlots[index]['startTime']} - ${_timeSlots[index]['endTime']}",
-                          style: TextStyle(
-                            color: _selectedTimeIndex == index
-                                ? Colors.white
-                                : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              )
-                  : Center(
-                child: Text(
-                  "No available slots for this date.",
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
-                ),
-              ),
-            ),
-          if (_dateSelected && _timeSelected)
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 5,
-                  backgroundColor: TColors.primary,
-                  minimumSize: const Size(200, 50),
-                ),
-                onPressed: () {
-                  if (!_dateSelected || !_timeSelected) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Please select a date and time slot.')),
-                    );
-                    return;
-                  }
-
-                  Get.to(
-                        () => PaymentMethodPage(),
-                    arguments: {
-                      'selectedDate': _selectedDate!,
-                      'selectedTimeSlot': _timeSlots[_selectedTimeIndex!],
-                    },
-                  );
-                },
-                child: const Text(
-                  "Proceed to Payment",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-        ],
-      ),
-    );
-  }
 }

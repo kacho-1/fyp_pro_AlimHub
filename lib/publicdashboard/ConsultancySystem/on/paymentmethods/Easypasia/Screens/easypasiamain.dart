@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EasyPaisaPaymentPage extends StatefulWidget {
-  const EasyPaisaPaymentPage({Key? key}) : super(key: key);
+  const EasyPaisaPaymentPage({super.key});
 
   @override
   _EasyPaisaPaymentPageState createState() => _EasyPaisaPaymentPageState();

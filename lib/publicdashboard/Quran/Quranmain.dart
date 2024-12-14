@@ -12,7 +12,7 @@ class QuranPublicScreen extends StatefulWidget {
 class _QuranPublicScreenState extends State<QuranPublicScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: QuranMainScreen(),
     );
   }

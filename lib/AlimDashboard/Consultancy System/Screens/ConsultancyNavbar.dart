@@ -5,6 +5,8 @@ import 'package:fyp_pro/AlimDashboard/Consultancy%20System/Screens/addconsultanc
 import 'package:get/get.dart';
 
 class ConsultancyBTNavbar extends StatelessWidget{
+  const ConsultancyBTNavbar({super.key});
+
   @override
   Widget build(BuildContext context) {
     final controller =Get.put(AlimConsultancyBTNavigationController());
@@ -33,6 +35,6 @@ class ConsultancyBTNavbar extends StatelessWidget{
 
 class AlimConsultancyBTNavigationController extends GetxController{
   final Rx<int> selectedIndex = 0.obs;
-  final screens = [ConsultancyHomeScreen(),AddConsultancyDetals(),AlimAvailabilityScreen()];
+  final screens = [const AlimAppointmentPage(),AddConsultancyDetals(), AlimAvailabilityScreen()];
 }
 

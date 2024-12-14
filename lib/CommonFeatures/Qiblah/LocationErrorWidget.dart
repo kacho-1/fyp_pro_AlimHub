@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+
 
 class LocationErrorWidget extends StatelessWidget {
 
@@ -16,14 +16,14 @@ class LocationErrorWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Icon(
+          const Icon(
             Icons.location_off,
             size : 150,
             color: errorColor,
           ),
-          SizedBox(height: 32,),
+          const SizedBox(height: 32,),
           Text(error!,
-          style: TextStyle(
+          style: const TextStyle(
             color: errorColor,
             fontWeight: FontWeight.bold
           ),),
@@ -31,7 +31,7 @@ class LocationErrorWidget extends StatelessWidget {
               onPressed: (){
                 if(callback !=null) callback!();
               },
-              child: Text('Retry')),
+              child: const Text('Retry')),
 
         ],
       ),

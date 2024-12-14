@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../CommonFeatures/Customs/CustomColor.dart';
-
 class ConsultationTypeCard extends StatelessWidget {
   final String title;
   final String description;
@@ -9,12 +7,12 @@ class ConsultationTypeCard extends StatelessWidget {
   final VoidCallback onPressed;
 
   const ConsultationTypeCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     required this.icon,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +36,20 @@ class ConsultationTypeCard extends StatelessWidget {
                   size: 36,
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       description,
                       style: TextStyle(

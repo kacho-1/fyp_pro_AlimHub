@@ -8,7 +8,7 @@ import '../Models/SurahModel.dart';
 import 'AudioScreen.dart';
 
 class AudioSurahScreen extends StatefulWidget {
-  const AudioSurahScreen({Key? key, required this.qari}) : super(key:key);
+  const AudioSurahScreen({super.key, required this.qari});
   final Qari qari;
   @override
   State<AudioSurahScreen> createState() => _AudioSurahScreenState();
@@ -23,7 +23,7 @@ class _AudioSurahScreenState extends State<AudioSurahScreen> {
         appBar: AppBar(
           backgroundColor: TColors.primary,
           elevation: 0,
-          title: Text('Surah List',
+          title: const Text('Surah List',
           style: TextStyle(
             color: Colors.white,fontSize: 20,
             fontWeight: FontWeight.bold
@@ -50,7 +50,7 @@ class _AudioSurahScreenState extends State<AudioSurahScreen> {
                         })
                 );
               }
-              return Center(
+              return const Center(
                 child:  CircularProgressIndicator(),
               );
             }

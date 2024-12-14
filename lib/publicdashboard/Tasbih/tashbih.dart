@@ -46,7 +46,7 @@ class _TisbahScreenState extends State<TisbahScreen> {
         children: [
           // Background image using Container with BoxDecoration
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/bg_tasbih.jpg'), // Background image path
                 fit: BoxFit.cover, // Cover entire background
@@ -57,7 +57,7 @@ class _TisbahScreenState extends State<TisbahScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Spacer(), // To push the buttons to the middle
+              const Spacer(), // To push the buttons to the middle
               // Row for Reset button and Range selector button
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +83,7 @@ class _TisbahScreenState extends State<TisbahScreen> {
                           child: Text(
                             'Range\n$_selectedRange',
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                            style: const TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         ),
                       ),
@@ -106,7 +106,7 @@ class _TisbahScreenState extends State<TisbahScreen> {
 
                           )
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Reset',
                             style: TextStyle(color: Colors.white, fontSize: 16),
@@ -117,7 +117,7 @@ class _TisbahScreenState extends State<TisbahScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 30), // Space between range/reset and counter
+              const SizedBox(height: 30), // Space between range/reset and counter
               // Large counter button at the bottom
               GestureDetector(
                 onTap: _incrementCounter,
@@ -137,7 +137,7 @@ class _TisbahScreenState extends State<TisbahScreen> {
                   child: Center(
                     child: Text(
                       '$_counter', // Display the counter value
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 60, // Larger text for counter value
                           fontWeight: FontWeight.bold),
@@ -145,7 +145,7 @@ class _TisbahScreenState extends State<TisbahScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20), // Add space at the bottom
+              const SizedBox(height: 20), // Add space at the bottom
             ],
           ),
         ],
@@ -159,41 +159,41 @@ class _TisbahScreenState extends State<TisbahScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Select Range"),
-          content: Container(
+          title: const Text("Select Range"),
+          content: SizedBox(
             height: 250, // Increase height to fit larger ranges
             child: ListView(
               children: [
                 ListTile(
-                  title: Text("7"),
+                  title: const Text("7"),
                   onTap: () {
                     _changeRange(7);
                     Navigator.of(context).pop();
                   },
                 ),
                 ListTile(
-                  title: Text("33"),
+                  title: const Text("33"),
                   onTap: () {
                     _changeRange(33);
                     Navigator.of(context).pop();
                   },
                 ),
                 ListTile(
-                  title: Text("100"),
+                  title: const Text("100"),
                   onTap: () {
                     _changeRange(100);
                     Navigator.of(context).pop();
                   },
                 ),
                 ListTile(
-                  title: Text("500"),
+                  title: const Text("500"),
                   onTap: () {
                     _changeRange(500);
                     Navigator.of(context).pop();
                   },
                 ),
                 ListTile(
-                  title: Text("1000"), // Added 1000 option
+                  title: const Text("1000"), // Added 1000 option
                   onTap: () {
                     _changeRange(1000);
                     Navigator.of(context).pop();

@@ -40,14 +40,14 @@ class _PrayerScreenState extends State<PrayerScreen> {
           future: getLoc(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(color: TColors.primary),
               );
             }
 
             // Check if latitude and longitude have been initialized
             if (latitude == null || longitude == null) {
-              return Center(child: Text('Unable to get location.')); // Handle null location
+              return const Center(child: Text('Unable to get location.')); // Handle null location
             }
 
             final myCoordinates = Coordinates(latitude!, longitude!);
@@ -56,99 +56,99 @@ class _PrayerScreenState extends State<PrayerScreen> {
             final prayerTimes = PrayerTimes.today(myCoordinates, params);
 
             return Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
-                  Padding(padding: EdgeInsets.all(18),
+                  Padding(padding: const EdgeInsets.all(18),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Fajr",style: TextStyle(
+                        const Text("Fajr",style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),),
                         Text(DateFormat.jm().format(prayerTimes.fajr),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),),
                       ],
                     ),),
-                  Divider(color: Colors.black,thickness: 1,),
-                  Padding(padding: EdgeInsets.all(18),
+                  const Divider(color: Colors.black,thickness: 1,),
+                  Padding(padding: const EdgeInsets.all(18),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Sunrise",style: TextStyle(
+                        const Text("Sunrise",style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),),
                         Text(DateFormat.jm().format(prayerTimes.sunrise),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),),
                       ],
                     ),),
-                  Divider(color: Colors.black,thickness: 1,),
-                  Padding(padding: EdgeInsets.all(18),
+                  const Divider(color: Colors.black,thickness: 1,),
+                  Padding(padding: const EdgeInsets.all(18),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Dhuhr",style: TextStyle(
+                        const Text("Dhuhr",style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),),
                         Text(DateFormat.jm().format(prayerTimes.dhuhr),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),),
                       ],
                     ),),
-                  Divider(color: Colors.black,thickness: 1,),
-                  Padding(padding: EdgeInsets.all(18),
+                  const Divider(color: Colors.black,thickness: 1,),
+                  Padding(padding: const EdgeInsets.all(18),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Asr",style: TextStyle(
+                        const Text("Asr",style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),),
                         Text(DateFormat.jm().format(prayerTimes.asr),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),),
                       ],
                     ),),
-                  Divider(color: Colors.black,thickness: 1,),
-                  Padding(padding: EdgeInsets.all(18),
+                  const Divider(color: Colors.black,thickness: 1,),
+                  Padding(padding: const EdgeInsets.all(18),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Magrib",style: TextStyle(
+                        const Text("Magrib",style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),),
                         Text(DateFormat.jm().format(prayerTimes.maghrib),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),),
                       ],
                     ),),
-                  Divider(color: Colors.black,thickness: 1,),
-                  Padding(padding: EdgeInsets.all(18),
+                  const Divider(color: Colors.black,thickness: 1,),
+                  Padding(padding: const EdgeInsets.all(18),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Isha",style: TextStyle(
+                        const Text("Isha",style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),),
                         Text(DateFormat.jm().format(prayerTimes.isha),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),),
@@ -166,20 +166,20 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
   Widget buildPrayerTimeRow(String title, DateTime time) {
     return Padding(
-      padding: EdgeInsets.all(18),
+      padding: const EdgeInsets.all(18),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
             DateFormat.jm().format(time),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
@@ -190,13 +190,13 @@ class _PrayerScreenState extends State<PrayerScreen> {
   }
 
   Future<void> getLoc() async {
-    bool _serviceEnabled;
+    bool serviceEnabled;
     PermissionStatus permissionGranted;
 
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
         return; // Return if service is not enabled
       }
     }

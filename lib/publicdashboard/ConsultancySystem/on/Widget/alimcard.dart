@@ -7,7 +7,7 @@ class AlimCard extends StatelessWidget {
   final String alimFee;
   final String alimUid;
 
-  const AlimCard({
+  const AlimCard({super.key, 
     required this.alimName,
     required this.alimImage,
     required this.alimFee,
@@ -17,7 +17,7 @@ class AlimCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       height: 150,
       child: GestureDetector(
         child: Card(
@@ -34,33 +34,33 @@ class AlimCard extends StatelessWidget {
               ),
               Flexible(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         alimName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Icon(
+                          const Icon(
                             Icons.star_border,
                             color: Colors.yellow,
                             size: 16,
                           ),
-                          Spacer(),
-                          Text('4.5'),
-                          Spacer(),
-                          Text('Reviews'),
-                          Spacer(),
-                          Text('(20)'),
-                          Spacer(),
+                          const Spacer(),
+                          const Text('4.5'),
+                          const Spacer(),
+                          const Text('Reviews'),
+                          const Spacer(),
+                          const Text('(20)'),
+                          const Spacer(),
                           Text('Fee: $alimFee')
                         ],
                       ),

@@ -18,14 +18,14 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget{
    final VoidCallback? leadingOnPressed;
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsets.symmetric(horizontal:16 ),
+    return Padding(padding: const EdgeInsets.symmetric(horizontal:16 ),
     child: AppBar(
     backgroundColor: TColors.primary,
 
 
     automaticallyImplyLeading: false,
     leading: showBackArrow?
-         IconButton(onPressed: () =>Get.back(), icon: Icon(Icons.arrow_back_outlined))
+         IconButton(onPressed: () =>Get.back(), icon: const Icon(Icons.arrow_back_outlined))
         :leadingIcon !=null? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon)) :null,
     title: title,
     actions: actions,
@@ -37,5 +37,5 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget{
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(24.0);
+  Size get preferredSize => const Size.fromHeight(24.0);
 }

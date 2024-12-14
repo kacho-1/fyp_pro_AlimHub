@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
+  const PrivacyPolicyPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Privacy Policy'),
+        title: const Center(child: Text('Privacy Policy',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),)),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
+            const Text(
               'Privacy Policy for AlimHub',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Effective Date: December 2024',
               style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'At AlimHub, we are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This Privacy Policy applies to all users of the AlimHub mobile application ("the App"), which is offered by SEERAHT International. By using the App, you agree to the collection and use of information as outlined in this Privacy Policy.',
               style: TextStyle(fontSize: 16),
               textAlign: TextAlign.justify,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _buildSectionTitle('1. Introduction'),
             _buildParagraph(
               'AlimHub is a mobile application that offers a centralized platform for users in Pakistan to access trustworthy Islamic counsel from competent Ulamas of the Ahle-e-Sunnah Wal Jamaah sect. The App facilitates communication, consultations, advice, posing queries, video conferences, fatwas, Islamic courses, webinars, and workshops. SEERAHT International ensures the verification of Ulamas to maintain the quality and reliability of the services.',
@@ -105,20 +107,20 @@ class PrivacyPolicyPage extends StatelessWidget {
 
   Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
     );
   }
 
   Widget _buildParagraph(String content) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 10.0),
+      padding: const EdgeInsets.only(bottom: 10.0),
       child: Text(
         content,
-        style: TextStyle(fontSize: 16),
+        style: const TextStyle(fontSize: 16),
         textAlign: TextAlign.justify,
       ),
     );

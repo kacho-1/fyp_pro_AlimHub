@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 
 
@@ -42,7 +41,7 @@ class _forgetpasswordState extends State<forgetpassword> {
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/bg.jfif'),
               fit: BoxFit.cover, // Adjust the image to cover the entire screen
@@ -51,12 +50,12 @@ class _forgetpasswordState extends State<forgetpassword> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Enter email to send you a password reset email",style: TextStyle(
+              const Text("Enter email to send you a password reset email",style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.black
               ),),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               TextFormField(
                 style: const TextStyle(color: Colors.white),
                 controller: email,
@@ -64,7 +63,7 @@ class _forgetpasswordState extends State<forgetpassword> {
                 decoration: InputDecoration(
                   hintText: 'Enter Email',
                   hintStyle: const TextStyle(color: Colors.black),
-                  prefixIcon: Icon(Icons.email, color: Colors.black),
+                  prefixIcon: const Icon(Icons.email, color: Colors.black),
                   labelText: 'Email',
                   labelStyle: const TextStyle(color: Colors.black, fontSize: 18),
                   filled: true,
@@ -85,7 +84,7 @@ class _forgetpasswordState extends State<forgetpassword> {
                   return null;
                 },
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),

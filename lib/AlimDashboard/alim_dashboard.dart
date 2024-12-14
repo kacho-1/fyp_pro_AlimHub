@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_pro/AlimDashboard/Screens/NavigationScreen.dart';
-import 'package:fyp_pro/AlimDashboard/Screens/homescreen.dart';
 class AlimDashboardMain extends StatefulWidget {
   const AlimDashboardMain({super.key});
 
@@ -11,7 +10,7 @@ class AlimDashboardMain extends StatefulWidget {
 class _AlimDashboardMainState extends State<AlimDashboardMain> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home:AlimBTNavbarMain(),
 
     );

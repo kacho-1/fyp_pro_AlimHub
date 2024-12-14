@@ -4,7 +4,7 @@ import '../../Customs/CustomColor.dart';
 import 'Controller/main_screen_controller.dart';
 
 class PostMainScreen extends StatelessWidget {
-  PostMainScreen({Key? key}) : super(key: key);
+  PostMainScreen({super.key});
 
   final _controller = Get.put(MainScreenController(),permanent: true);
   @override

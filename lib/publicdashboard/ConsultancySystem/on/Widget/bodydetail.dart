@@ -8,17 +8,17 @@ class DetailBody extends StatelessWidget {
 
 
   const DetailBody({
-    Key? key,
+    super.key,
     required this.aboutAlim,
     required this.alimExperience,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     Config().init(context);
     return Container(
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.all(20),
+      margin: const EdgeInsets.only(bottom: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -27,7 +27,7 @@ class DetailBody extends StatelessWidget {
 
           ), // Keep this as is, or modify based on available data
           Config.spaceBig,
-          Text(
+          const Text(
             'About Alim',
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -37,7 +37,7 @@ class DetailBody extends StatelessWidget {
           Config.spaceSmall,
           Text(
             aboutAlim, // Display alim's description
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               height: 1.5,
               color: Colors.grey,

@@ -8,6 +8,6 @@ import '../Comment/commentscreen.dart';
 List<GetPage<dynamic>> getPages() {
   return [
     GetPage( name: '/commentscreen',
-      page: () => CommentsScreen(),),
+      page: () => const CommentsScreen(),),
   ];
 }

@@ -53,7 +53,7 @@ class _ConsultationTypePageState extends State<ConsultationTypePage> {
               description: "Submit your queries and get a written response.",
               icon: Icons.message,
               onPressed: () {
-                Get.to(() => AlimBookingPage(alimData: alimData['alimUid']));
+                Get.to(() => AlimBookingPage(alimData: alimData['alimUid'], ConsultancyType: 'Text-Based',));
               },
             ),
             const SizedBox(height: 25),
@@ -62,7 +62,7 @@ class _ConsultationTypePageState extends State<ConsultationTypePage> {
               description: "Schedule a video call with a scholar.",
               icon: Icons.video_call,
               onPressed: () {
-                Get.to(() => AlimBookingPage(alimData: alimData['alimUid']));
+                Get.to(() => AlimBookingPage(alimData: alimData['alimUid'], ConsultancyType: 'Video-call',));
               },
             ),
           ],

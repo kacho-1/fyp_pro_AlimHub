@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rxdart/rxdart.dart';
-
-import '../Model/ShowPostModel.dart'; // Import rxdart package
+import '../Model/ShowPostModel.dart';
 
 class ShowPostController extends GetxController {
   final _postList = RxList<Post>([]);
@@ -26,9 +24,9 @@ class ShowPostController extends GetxController {
         .snapshots()
         .map((QuerySnapshot querySnapshot) {
       List<Post> list = [];
-      querySnapshot.docs.forEach((element) {
+      for (var element in querySnapshot.docs) {
         list.add(Post.fromDocumentSnapshot(element));
-      });
+      }
       return list;
     });
   }

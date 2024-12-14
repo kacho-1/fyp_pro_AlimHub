@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:fyp_pro/CommonFeatures/Customs/CustomColor.dart';
 
 class AppointmentType extends StatelessWidget {
-  AppointmentType({super.key,required this.alimData});
+  const AppointmentType({super.key,required this.alimData});
    final alimData;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Apointment Type',
+        title: const Center(child: Text('Apointment Type',
           style: TextStyle(
               color: Colors.white,
               fontSize: 18,
@@ -18,18 +18,18 @@ class AppointmentType extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 14,),
+            const SizedBox(height: 14,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
                   onTap: (){},
                   child: Container(
-                    padding:EdgeInsets.all(20),
+                    padding:const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: TColors.primary,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black,
                           blurRadius: 6,
@@ -41,25 +41,25 @@ class AppointmentType extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.all(8),
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.add,
+                          child: const Icon(Icons.add,
                           color: TColors.primary,
                           size: 35,),
                         ),
-                        SizedBox(height: 30,),
-                        Text('Text-Based Consultancy',
+                        const SizedBox(height: 30,),
+                        const Text('Text-Based Consultancy',
                           style:TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
                             color: Colors.white,
 
                           ) ,),
-                        SizedBox(height: 5,),
-                        Text('Make an Appointment',
+                        const SizedBox(height: 5,),
+                        const Text('Make an Appointment',
                         style: TextStyle(
                           color: Colors.white54
                         ),),
@@ -70,11 +70,11 @@ class AppointmentType extends StatelessWidget {
                 InkWell(
                   onTap: (){},
                   child: Container(
-                    padding:EdgeInsets.all(20),
+                    padding:const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: TColors.primary,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black,
                           blurRadius: 6,
@@ -86,25 +86,25 @@ class AppointmentType extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.all(8),
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.add,
+                          child: const Icon(Icons.add,
                             color: TColors.primary,
                             size: 35,),
                         ),
-                        SizedBox(height: 30,),
-                        Text('Video Call Consultancy',
+                        const SizedBox(height: 30,),
+                        const Text('Video Call Consultancy',
                           style:TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
                             color: Colors.white,
 
                           ) ,),
-                        SizedBox(height: 5,),
-                        Text('Make an Appointment',
+                        const SizedBox(height: 5,),
+                        const Text('Make an Appointment',
                           style: TextStyle(
                               color: Colors.white54
                           ),),

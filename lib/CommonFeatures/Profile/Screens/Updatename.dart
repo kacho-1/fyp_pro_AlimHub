@@ -19,7 +19,7 @@ class ChangeName extends StatelessWidget {
         title: Text('Change Name', style: Theme.of(context).textTheme.headlineSmall,),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,7 +27,7 @@ class ChangeName extends StatelessWidget {
             Text('Use real name for easy verification. This name will appear on several pages.',
               style: Theme.of(context).textTheme.bodySmall,
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
             // Text Fields
             Form(
@@ -44,7 +44,7 @@ class ChangeName extends StatelessWidget {
                  )],
                   ),
             ),
-            SizedBox(height:10,),
+            const SizedBox(height:10,),
 
             // Save Button
             SizedBox(width: double.infinity,

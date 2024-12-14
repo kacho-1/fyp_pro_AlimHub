@@ -17,7 +17,7 @@ class QuranMainScreen extends StatefulWidget {
 
 class _QuranMainScreenState extends State<QuranMainScreen> {
   int setectedindex =0;
-  List<Widget> _widgetlist = [QuranScreen(),AudioQuranScreen()];
+  final List<Widget> _widgetlist = [const QuranScreen(),const AudioQuranScreen()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,7 +25,7 @@ class _QuranMainScreenState extends State<QuranMainScreen> {
 
           body: _widgetlist[setectedindex],
             bottomNavigationBar: ConvexAppBar(
-              items: [
+              items: const [
                 TabItem(icon:Icons.menu_book_outlined,  title: 'Quran'),
                 TabItem(icon: Icons.audiotrack , title: 'Audio'),
 

@@ -6,7 +6,7 @@ import 'package:fyp_pro/publicdashboard/ConsultancySystem/on/paymentmethods/Card
 import '../../../../../../CommonFeatures/Customs/CustomColor.dart';
 
 class CardPaymentPage extends StatefulWidget {
-  const CardPaymentPage({Key? key}) : super(key: key);
+  const CardPaymentPage({super.key});
 
   @override
   _CardPaymentPageState createState() => _CardPaymentPageState();
@@ -85,8 +85,8 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                     ),
                   )
                       : null,
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
                       color: Colors.grey, // Border color when not focused
                       width: 1.5,
                     ),
@@ -130,12 +130,12 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                     hintText: 'Card Holder Name',
                     filled: true, // Enables the background color
                     fillColor: Colors.white,
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                    prefixIcon: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Icon(Icons.person_2_outlined),
                     ),
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
                         color: Colors.grey, // Border color when not focused
                         width: 1.5,
                       ),
@@ -186,12 +186,12 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                         hintText: 'CVV',
                         filled: true, // Enables the background color
                         fillColor: Colors.white,
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
+                        prefixIcon: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
                           child: Icon(Icons.lock_clock_outlined),
                         ),
-                        border: OutlineInputBorder(
-                          borderSide: const BorderSide(
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(
                             color: Colors.grey, // Border color when not focused
                             width: 1.5,
                           ),
@@ -227,7 +227,7 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
                   Expanded(
                     child: TextFormField(
                       controller: expiredateController,
@@ -241,12 +241,12 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                         hintText: 'MM/YY',
                         filled: true, // Enables the background color
                         fillColor: Colors.white,
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
+                        prefixIcon: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
                           child: Icon(Icons.calendar_month_outlined),
                         ),
-                        border: OutlineInputBorder(
-                          borderSide: const BorderSide(
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(
                             color: Colors.grey, // Border color when not focused
                             width: 1.5,
                           ),
@@ -284,15 +284,15 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 100,),
+              const SizedBox(height: 100,),
         
         
-              Container(
+              SizedBox(
                 width: double.infinity,
                   child:Center(
         
                     child: Padding(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child: ElevatedButton(
         
                             onPressed: (){
@@ -301,10 +301,10 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                             style: ElevatedButton.styleFrom(
                               elevation: 5,
                               backgroundColor: TColors.primary,
-                              minimumSize: Size (200,50),
+                              minimumSize: const Size (200,50),
         
                             ),
-                            child: Text('Conform Payment',
+                            child: const Text('Conform Payment',
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
